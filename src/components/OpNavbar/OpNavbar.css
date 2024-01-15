@@ -1,0 +1,11 @@
+.op-navebar-div {
+  width: 150px;
+  height: 100vh;
+  background-color: var(--green);
+}
+
+.logout {
+  background-color: var(--light);
+  border: none;
+  border-radius: 5px;
+}

@@ -2,10 +2,10 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getUser } from "./utilities/users-service";
-import NewOrderPage from "./pages/NewOrderPage/NewOrderPage.jsx";
 import AuthPage from "./pages/AuthPage/AuthPage.jsx";
-import OrderHistoryPage from "./pages/OrderHistoryPage/OrderHistoryPage.jsx";
-import Navbar from "./components/Navbar";
+import OpNavbar from "./components/OpNavbar/OpNavbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import HomePage from "./pages/HomePage/HomePage.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -13,20 +13,28 @@ function App() {
     <div className="App">
       {user ? (
         <>
-          <Navbar user={user} setUser={setUser} />
+          <Navbar />
           <Routes>
             <Route
-              path="/orders/new"
-              element={<NewOrderPage user={user} setUser={setUser} />}
+              path="/operations"
+              element={<OpNavbar user={user} setUser={setUser} />}
             />
-            <Route
-              path="/orders"
-              element={<OrderHistoryPage user={user} setUser={setUser} />}
-            />
+            <Route path="/auth" element={<>Already signed in</>} />
+            <Route path="" element="" />
           </Routes>
         </>
       ) : (
-        <AuthPage user={user} setUser={setUser} />
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/auth"
+              element={<AuthPage user={user} setUser={setUser} />}
+            />
+            <Route path="/operations" element={<>Please signin</>} />
+          </Routes>
+        </>
       )}
     </div>
   );
