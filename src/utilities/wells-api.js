@@ -1,11 +1,11 @@
-import sendRequest from "./send-request";
+import * as sendRequests from "./send-request";
 
 const BASE_URL = "/api/wells";
 
 export function getAll() {
-  return sendRequest(BASE_URL);
+  return sendRequests.sendRequest(BASE_URL);
 }
 
 export function getById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+  return sendRequests.sendRequest(`${BASE_URL}/${id}`);
 }

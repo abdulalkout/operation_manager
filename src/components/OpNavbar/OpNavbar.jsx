@@ -20,11 +20,11 @@ function Navbar({ user, setUser }) {
       <hr />
       <br />
       <div>
+        <Link to="allwells">All Wells</Link>
+        <hr />
         <Link to="">Production</Link>
         <hr />
         <Link to="">Drilling</Link>
-        <hr />
-        <Link to="">All Wells</Link>
         <hr />
         <Link to="">Rigs</Link>
       </div>

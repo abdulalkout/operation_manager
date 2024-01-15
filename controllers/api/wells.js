@@ -37,15 +37,6 @@ async function getWells(req, res) {
   }
 }
 
-async function getWells(req, res) {
-  try {
-    const wells = await Well.find({}).sort("name");
-    res.status(200).json(wells);
-  } catch (e) {
-    res.status(400).json({ msg: e.message });
-  }
-}
-
 async function getProductionWells(req, res) {
   try {
     const productionWells = await Well.find({ operation: "Production" }).sort(

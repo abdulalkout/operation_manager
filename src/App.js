@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getUser } from "./utilities/users-service";
 import AuthPage from "./pages/AuthPage/AuthPage.jsx";
-import OpNavbar from "./components/OpNavbar/OpNavbar.jsx";
+import AllWellsPage from "./pages/AllWellsPage/AllWellsPage.jsx";
+import OperationsPage from "./pages/OperationsPage/OperationsPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 
@@ -17,7 +18,11 @@ function App() {
           <Routes>
             <Route
               path="/operations"
-              element={<OpNavbar user={user} setUser={setUser} />}
+              element={<OperationsPage user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/operations/allwells"
+              element={<AllWellsPage user={user} setUser={setUser} />}
             />
             <Route path="/auth" element={<>Already signed in</>} />
             <Route path="" element="" />
