@@ -22,9 +22,9 @@ function Navbar({ user, setUser }) {
       <div>
         <Link to="/allwells">All Wells</Link>
         <hr />
-        <Link to="">Production</Link>
+        <Link to="/production">Production</Link>
         <hr />
-        <Link to="">Drilling</Link>
+        <Link to="/development">Drilling</Link>
         <hr />
         <Link to="/Rigs">Rigs</Link>
       </div>

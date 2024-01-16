@@ -1,11 +1,10 @@
 import React from "react";
-import "./AllWellsPage.css";
 import { useEffect, useState } from "react";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import * as wllsAPI from "../../utilities/wells-api";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
 
-function AllWellsPage({ user, setUser }) {
+function DevelopmentWells({ user, setUser }) {
   const [allWells, setAllWells] = useState([]);
   const [productionWells, setProductionWells] = useState([]);
   const [developmentWells, setDevelopmentWells] = useState([]);
@@ -44,4 +43,4 @@ function AllWellsPage({ user, setUser }) {
   );
 }
 
-export default AllWellsPage;
+export default DevelopmentWells;

@@ -8,6 +8,8 @@ import AllRigsPage from "./pages/AllRigsPage/AllRigsPage.jsx";
 import OperationsPage from "./pages/OperationsPage/OperationsPage.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
+import DevelopmentWells from "./pages/DevelopmentWells/DevelopmentWells.jsx";
+import ProductionWells from "./pages/ProductionWells/ProductionWells.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -17,6 +19,7 @@ function App() {
         <>
           <Navbar />
           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route
               path="/operations"
               element={<OperationsPage user={user} setUser={setUser} />}
@@ -24,6 +27,14 @@ function App() {
             <Route
               path="/allwells"
               element={<AllWellsPage user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/production"
+              element={<ProductionWells user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/development"
+              element={<DevelopmentWells user={user} setUser={setUser} />}
             />
             <Route
               path="/Rigs"
