@@ -5,7 +5,7 @@ import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import * as RigsAPI from "../../utilities/rigs-api";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
 
-function AllRigsPage() {
+function AllRigsPage({ user, setUser }) {
   const [allRigs, setAllRigs] = useState([]);
   useEffect(() => {
     async function getRigs() {
