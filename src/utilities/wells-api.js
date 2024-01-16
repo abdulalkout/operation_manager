@@ -1,11 +1,21 @@
-import * as sendRequests from "./send-request";
+// wells-api.js
+
+import { sendRequest } from "./send-request";
 
 const BASE_URL = "/api/wells";
 
 export function getAll() {
-  return sendRequests.sendRequest(BASE_URL);
+  return sendRequest(BASE_URL);
 }
 
 export function getById(id) {
-  return sendRequests.sendRequest(`${BASE_URL}/${id}`);
+  return sendRequest(`${BASE_URL}/${id}`);
+}
+
+export function getProductionWells() {
+  return sendRequest(`${BASE_URL}/production`);
+}
+
+export function getDevelopmentWells() {
+  return sendRequest(`${BASE_URL}/development`);
 }

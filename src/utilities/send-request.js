@@ -15,6 +15,7 @@ export async function sendRequest(url, method = "GET", payload = null) {
     // Add token to an Authorization header
     // Prefacing with 'Bearer' is recommended in the HTTP specification
     options.headers.Authorization = `Bearer ${token}`;
+    console.log(token);
   }
 
   const res = await fetch(url, options);

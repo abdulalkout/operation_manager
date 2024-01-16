@@ -7,14 +7,33 @@ import DataComponentsList from "../../components/DataComponents/DataComponentsLi
 
 function AllWellsPage({ user, setUser }) {
   const [allWells, setAllWells] = useState([]);
+  const [productionWells, setProductionWells] = useState([]);
+  const [developmentWells, setDevelopmentWells] = useState([]);
   useEffect(() => {
-    async function getWells() {
-      const wells = await wllsAPI.getAll();
-      setAllWells(wells);
+    async function fetchData() {
+      try {
+        const wells = await wllsAPI.getAll();
+        setAllWells(wells);
+      } catch (error) {
+        console.error("Error fetching all wells:", error);
+      }
+      try {
+        const wells = await wllsAPI.getProductionWells();
+        setProductionWells(wells);
+      } catch (error) {
+        console.error("Error fetching production wells:", error);
+      }
+      try {
+        const wells = await wllsAPI.getDevelopmentWells();
+        setDevelopmentWells(wells);
+      } catch (error) {
+        console.error("Error fetching production wells:", error);
+      }
     }
-    getWells();
-    console.log(allWells);
+
+    fetchData();
   }, []);
+
   return (
     <div className="allwells-div">
       <OpNavbar user={user} setUser={setUser} />
