@@ -17,20 +17,7 @@ function AllWellsPage({ user, setUser }) {
       } catch (error) {
         console.error("Error fetching all wells:", error);
       }
-      try {
-        const wells = await wllsAPI.getProductionWells();
-        setProductionWells(wells);
-      } catch (error) {
-        console.error("Error fetching production wells:", error);
-      }
-      try {
-        const wells = await wllsAPI.getDevelopmentWells();
-        setDevelopmentWells(wells);
-      } catch (error) {
-        console.error("Error fetching dev wells:", error);
-      }
     }
-
     fetchData();
   }, []);
 

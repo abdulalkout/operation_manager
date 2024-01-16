@@ -1,13 +1,13 @@
 const Well = require("../../models/well");
 
 module.exports = {
-  show,
+  showWell,
   getWells,
   getProductionWells,
   getDevelopmentWells,
 };
 
-async function show(req, res) {
+async function showWell(req, res) {
   try {
     const item = await Well.findById(req.params.id);
     res.status(200).json(item);
