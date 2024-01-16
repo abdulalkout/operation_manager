@@ -1,18 +1,18 @@
 import React from "react";
-import "./AllWellsPage.css";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import * as wllsAPI from "../../utilities/wells-api";
-import DataComponentsList from "../../components/DataComponents/DataComponentsList";
+import OpNavbar from "../../components/OpNavbar/OpNavbar";
 
-function AllWellsPage({ user, setUser }) {
-  const [allWells, setAllWells] = useState([]);
+function WellDetailPage({ user, setUser }) {
+  const { id } = useParams();
+  const [wellData, setWellData] = useState({});
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const wells = await wllsAPI.getAll();
-        setAllWells(wells);
+        const foundWell = await wllsAPI.getById(id);
+        setWellData(foundWell);
       } catch (error) {
         console.error("Error fetching all wells:", error);
       }
@@ -24,10 +24,12 @@ function AllWellsPage({ user, setUser }) {
     <div className="allwells-div">
       <OpNavbar user={user} setUser={setUser} />
       <div>
-        <DataComponentsList allData={allWells} />
+        <div>
+          <h1>{wellData.name ? wellData.name : <>no data</>}</h1>
+        </div>
       </div>
     </div>
   );
 }
 
-export default AllWellsPage;
+export default WellDetailPage;

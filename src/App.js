@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import DevelopmentWells from "./pages/DevelopmentWells/DevelopmentWells.jsx";
 import ProductionWells from "./pages/ProductionWells/ProductionWells.jsx";
+import WellDetailPage from "./pages/WellDetailPage/WellDetailPage.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -40,8 +41,11 @@ function App() {
               path="/Rigs"
               element={<AllRigsPage user={user} setUser={setUser} />}
             />
+            <Route
+              path="/well/:id"
+              element={<WellDetailPage user={user} setUser={setUser} />}
+            />
             <Route path="/auth" element={<>Already signed in</>} />
-            <Route path="" element="" />
           </Routes>
         </>
       ) : (

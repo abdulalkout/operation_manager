@@ -1,10 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import "./DataComponents.css";
+import { Link } from "react-router-dom";
 
 function DataComponentsCard({ dataItem }) {
-  const [show, setShow] = useState(true);
-
   const rigPic =
     "https://www.lassarat.com/wp-content/uploads/2019/07/Pictos-08.png";
 
@@ -18,24 +16,28 @@ function DataComponentsCard({ dataItem }) {
         <p>{dataItem.name}</p>
         <p>{dataItem.field ? dataItem.field : null}</p>
         <p>{dataItem.status}</p>
+        <Link to={`/well/${dataItem._id}`}>
+          <button>Show</button>
+        </Link>
       </div>
     );
   };
 
-  const showRig = () => {
+  const allRig = () => {
     return (
       <div className="item-card">
         <img className="card-pics" src={rigPic} alt="RigPic" />
         <p>{dataItem.name}</p>
         <p>{dataItem.field ? dataItem.field : null}</p>
         <p>{dataItem.status}</p>
+        <Link to={`/rig/${dataItem._id}`}>
+          <button>Show</button>
+        </Link>
       </div>
     );
   };
 
-  return (
-    <div>{show & (dataItem.type == "Well") ? allwell("") : showRig()}</div>
-  );
+  return <div>{dataItem.type == "Well" ? allwell() : allRig()}</div>;
 }
 
 export default DataComponentsCard;
