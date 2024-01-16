@@ -6,6 +6,7 @@ const wellSchema = new Schema(
     name: { type: String, required: true },
     field: { type: String, required: true },
     location: [{ type: String }],
+    type: { type: String, default: "Well" },
     status: { type: String, enum: ["Working", "Standby"], required: true },
     operation: {
       type: String,
@@ -31,5 +32,7 @@ const wellSchema = new Schema(
   },
   { timestamps: true }
 );
+
+wellSchema.path("operationActivities").required(false);
 
 module.exports = mongoose.model("Well", wellSchema);

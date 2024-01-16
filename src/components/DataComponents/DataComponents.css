@@ -1,0 +1,14 @@
+.item-list {
+  margin: 50px;
+  display: flex;
+  gap: 40px;
+}
+
+.item-card {
+  width: 100px;
+  background-color: var(--light-2);
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
