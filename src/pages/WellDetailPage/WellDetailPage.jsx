@@ -1,4 +1,5 @@
 import React from "react";
+import "./WellDetailPage.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as wllsAPI from "../../utilities/wells-api";
@@ -18,17 +19,32 @@ function WellDetailPage({ user, setUser }) {
       }
     }
     fetchData();
+    console.log(wellData);
   }, []);
 
   return (
-    <div className="allwells-div">
-      <OpNavbar user={user} setUser={setUser} />
-      <div>
-        <div>
-          <h1>{wellData.name ? wellData.name : <>no data</>}</h1>
+    <>
+      {wellData.type === "Well" ? (
+        <div className="allwells-div">
+          <OpNavbar user={user} setUser={setUser} />
+          <div className="show-div">
+            <div className="well-details-div">
+              <h2>Well Name: {wellData.name}</h2>
+              <h2>Field Name: {wellData.field}</h2>
+              <h2>
+                Location:
+                {wellData.location.map((loc, i) => {
+                  return <h5>{loc}</h5>;
+                })}
+              </h2>
+              <h2>Status: {wellData.status}</h2>
+              <h2>Operation: {wellData.operation}</h2>
+              <h2>Rig: {wellData.rig}</h2>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 }
 

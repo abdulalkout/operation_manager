@@ -1,0 +1,15 @@
+.show-div {
+  margin: 100px;
+  background-color: var(--light-2);
+  border-radius: 10px;
+  border: solid 1px var(--orange);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.well-details-div {
+  display: flex;
+  gap: 30px;
+  margin: 30px 100px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
