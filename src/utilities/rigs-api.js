@@ -6,6 +6,6 @@ export function getAll() {
   return sendRequests.sendRequest(BASE_URL);
 }
 
-export function getById(id) {
+export function getRigById(id) {
   return sendRequests.sendRequest(`${BASE_URL}/${id}`);
 }

@@ -116,23 +116,28 @@ const Rig = require("./models/rig");
   const rigs = await Rig.create([
     {
       name: "Rig 1",
-      well: null,
+      well: wells[0]._id, // Assign Rig 1 to Well 1
       type: "Rig",
       status: "Working",
     },
     {
       name: "Rig 2",
-      well: null,
+      well: wells[2]._id, // Assign Rig 2 to Well 3
       type: "Workover",
       status: "Standby",
     },
     {
       name: "Rig 3",
-      well: null,
+      well: wells[4]._id, // Assign Rig 3 to Well 5
       type: "Rig",
       status: "Working",
     },
   ]);
+
+  // Update wells with assigned rigs
+  await Well.findByIdAndUpdate(wells[0]._id, { rig: rigs[0]._id });
+  await Well.findByIdAndUpdate(wells[2]._id, { rig: rigs[1]._id });
+  await Well.findByIdAndUpdate(wells[4]._id, { rig: rigs[2]._id });
 
   console.log("Wells:", wells);
   console.log("Rigs:", rigs);

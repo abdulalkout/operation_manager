@@ -4,6 +4,7 @@ const Rig = require("../../models/rig");
 
 module.exports = {
   getRigs,
+  showRig,
   cart,
   addToCart,
   setItemQtyInCart,
@@ -72,6 +73,15 @@ async function getRigs(req, res) {
   try {
     const rigs = await Rig.find({}).sort("name");
     res.status(200).json(rigs);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+async function showRig(req, res) {
+  try {
+    const rig = await Rig.findById(req.params.id);
+    res.status(200).json(rig);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
