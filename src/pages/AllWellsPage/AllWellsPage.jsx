@@ -7,6 +7,7 @@ import DataComponentsList from "../../components/DataComponents/DataComponentsLi
 
 function AllWellsPage({ user, setUser }) {
   const [allWells, setAllWells] = useState([]);
+  const [addNewWell, setAddNewWell] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,12 +21,31 @@ function AllWellsPage({ user, setUser }) {
     fetchData();
   }, []);
 
+  const addWellForm = () => {
+    return (
+      <div>
+        <button
+          onClick={() => {
+            setAddNewWell(false);
+          }}
+        >
+          returen to all wells
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="allwells-div">
       <OpNavbar user={user} setUser={setUser} />
-      <div>
-        <DataComponentsList allData={allWells} />
-      </div>
+      {addNewWell ? (
+        addWellForm()
+      ) : (
+        <div>
+          <DataComponentsList allData={allWells} />
+          <button onClick={() => setAddNewWell(true)}>Add new well</button>
+        </div>
+      )}
     </div>
   );
 }
