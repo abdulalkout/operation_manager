@@ -41,9 +41,40 @@ const Rig = require("./models/rig");
       rig: null,
       operationActivities: [
         {
-          name: "Activity 2",
-          status: "Status 2",
-          operationText: "Operation Text 2",
+          name: "Drilling",
+          status: "Done",
+          operationText:
+            "wirline activity was in this </br> wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>",
+          request: "Pending",
+          requester: "User 2",
+          approval: "Manager 2",
+          production: 200,
+        },
+        {
+          name: "Drilling",
+          status: "Done",
+          operationText:
+            "wirline activity was in this </br> wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>",
+          request: "Pending",
+          requester: "User 2",
+          approval: "Manager 2",
+          production: 200,
+        },
+        {
+          name: "Drilling",
+          status: "Done",
+          operationText:
+            "wirline activity was in this </br> wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>",
+          request: "Pending",
+          requester: "User 2",
+          approval: "Manager 2",
+          production: 200,
+        },
+        {
+          name: "Drilling",
+          status: "Done",
+          operationText:
+            "wirline activity was in this </br> wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>wirline activity was in this </br>",
           request: "Pending",
           requester: "User 2",
           approval: "Manager 2",
