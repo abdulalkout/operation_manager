@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddWellForm.css"; // Add your styling if needed
+import { addWell } from "../../utilities/wells-api";
+import * as RigsAPI from "../../utilities/rigs-api";
 
-function AddWellForm({ onAddWell }) {
+function AddWellForm() {
   const initialWellState = {
     name: "",
     field: "",
@@ -12,15 +14,35 @@ function AddWellForm({ onAddWell }) {
   };
 
   const [newWell, setNewWell] = useState(initialWellState);
+  const [allRigs, setAllRigs] = useState([]);
+
+  useEffect(() => {
+    async function getRigs() {
+      try {
+        const rigs = await RigsAPI.getAll();
+        setAllRigs(rigs);
+      } catch (error) {
+        console.log("Error fetching rigs:", error.message);
+        // Handle the error, e.g., display an error message to the user
+      }
+    }
+    getRigs();
+  }, []);
 
   const handleChange = (evt) => {
     setNewWell({ ...newWell, [evt.target.name]: evt.target.value });
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    onAddWell(newWell); // Pass the new well data to the parent component
     setNewWell(initialWellState); // Reset form state after submission
+    try {
+      const formData = { ...newWell };
+      const well = await addWell(formData);
+      console.log(well);
+    } catch (error) {
+      console.log("adding well field", error.message);
+    }
   };
 
   return (
@@ -43,11 +65,20 @@ function AddWellForm({ onAddWell }) {
         required
       />
 
-      <label>Location:</label>
+      <label>Latitude:</label>
       <input
         type="text"
-        name="location"
-        value={newWell.location}
+        name="latitude"
+        value={newWell.latitude}
+        onChange={handleChange}
+        required
+      />
+
+      <label>Longitude:</label>
+      <input
+        type="text"
+        name="longitude"
+        value={newWell.longitude}
         onChange={handleChange}
         required
       />
@@ -75,13 +106,16 @@ function AddWellForm({ onAddWell }) {
       </select>
 
       <label>Rig:</label>
-      <input
-        type="text"
-        name="rig"
-        value={newWell.rig}
-        onChange={handleChange}
-        required
-      />
+      <select name="rig" value={newWell.rig} onChange={handleChange} required>
+        <option value="" disabled>
+          Select Rig
+        </option>
+        {allRigs.map((rig) => (
+          <option key={rig._id} value={rig._id}>
+            {rig.name}
+          </option>
+        ))}
+      </select>
 
       <button type="submit">Add Well</button>
     </form>

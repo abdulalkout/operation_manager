@@ -19,3 +19,7 @@ export function getProductionWells() {
 export function getDevelopmentWells() {
   return sendRequest(`${BASE_URL}/development`);
 }
+
+export async function addWell(wellData) {
+  return sendRequest(BASE_URL, "POST", wellData);
+}

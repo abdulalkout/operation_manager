@@ -5,7 +5,9 @@ const wellSchema = new Schema(
   {
     name: { type: String, required: true },
     field: { type: String, required: true },
-    location: [{ type: String }],
+    location: [{ type: String, required: false }],
+    longitude: { type: String, required: true },
+    latitude: { type: String, required: true },
     type: { type: String, default: "Well" },
     status: { type: String, enum: ["Working", "Standby"], required: true },
     operation: {
