@@ -1,6 +1,10 @@
 .op-navebar-div {
+  /* top: 60px;
+  left: 0;
+  z-index: 2;
+  position: sticky; */
   width: 150px;
-  height: 100vh;
+  height: auto;
   background-color: var(--green);
 }
 

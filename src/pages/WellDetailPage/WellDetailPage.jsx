@@ -29,6 +29,32 @@ function WellDetailPage({ user, setUser }) {
     console.log(rigData);
   }, [id]);
 
+  const showActivity = () => {
+    return (
+      <div className="activity-div">
+        {wellData.operationActivities.map((activity, i) => {
+          return (
+            <div>
+              <div className="operation-activity-header">
+                <p>{activity.name}</p>
+                <p>{activity.status}</p>
+                <p>{activity.request}</p>
+              </div>
+              <div className="operation-activity-body">
+                <p>{activity.operationText}</p>
+              </div>
+              <div className="operation-activity-header">
+                <p>Requested by: {activity.requester}</p>
+                <p>Aproved by: {activity.approval}</p>
+              </div>
+              <p>Production: {activity.production} ppg</p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <>
       {wellData.type === "Well" ? (
@@ -36,17 +62,26 @@ function WellDetailPage({ user, setUser }) {
           <OpNavbar user={user} setUser={setUser} />
           <div className="show-div">
             <div className="well-details-div">
-              <h2>Well Name: {wellData.name}</h2>
-              <h2>Field Name: {wellData.field}</h2>
-              <h2>
-                Location:
-                {wellData.location.map((loc, i) => {
-                  return <h5 key={i}>{loc}</h5>;
-                })}
-              </h2>
-              <h2>Status: {wellData.status}</h2>
-              <h2>Operation: {wellData.operation}</h2>
-              <h2>Rig: {rigData ? rigData.name : "No Rig"}</h2>
+              <div>
+                <p>Well Name: {wellData.name}</p>
+                <p>Field Name: {wellData.field}</p>
+                <p>Status: {wellData.status}</p>
+              </div>
+              <div>
+                <p>
+                  Lat: {wellData.location[0]}, Long: {wellData.location[1]}
+                </p>
+                <p>Operation: {wellData.operation}</p>
+                <div>
+                  <p>
+                    Rig: {rigData ? rigData.name : "Rigless"}
+                    <button className="rig-button">Show Rig</button>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              {wellData.operationActivities.length > 0 ? showActivity() : null}
             </div>
           </div>
         </div>

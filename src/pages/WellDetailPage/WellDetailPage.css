@@ -4,6 +4,9 @@
   border-radius: 10px;
   border: solid 1px var(--orange);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .well-details-div {
@@ -12,4 +15,27 @@
   margin: 30px 100px;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.activity-div {
+  margin: 50px;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 1px var(--orange);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.operation-activity-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.operation-activity-body {
+  padding: 30px;
+  border-radius: 10px;
+  border: solid 1px var(--orange);
+}
+
+.rig-button {
+  margin-left: 20px;
 }

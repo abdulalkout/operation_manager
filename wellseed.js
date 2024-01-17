@@ -99,17 +99,7 @@ const Rig = require("./models/rig");
       status: "Working",
       operation: "Production",
       rig: null,
-      operationActivities: [
-        {
-          name: "Activity 5",
-          status: "Status 5",
-          operationText: "Operation Text 5",
-          request: "Approved",
-          requester: "User 5",
-          approval: "Manager 5",
-          production: 500,
-        },
-      ],
+      operationActivities: [],
     },
   ]);
 
