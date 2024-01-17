@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import * as wllsAPI from "../../utilities/wells-api";
 import * as rigsAPI from "../../utilities/rigs-api";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
+import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 import { Link } from "react-router-dom";
 
 function WellDetailPage({ user, setUser }) {
   const { id } = useParams();
   const [wellData, setWellData] = useState({});
   const [rigData, setRigData] = useState(null);
+  const [newActivity, setNewActivity] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -59,6 +61,24 @@ function WellDetailPage({ user, setUser }) {
     );
   };
 
+  const editWell = async (formData) => {
+    try {
+      await wllsAPI.editWell(formData);
+      const updatedWell = await wllsAPI.getById(id);
+      setWellData(updatedWell);
+    } catch (error) {
+      console.log("Edit well failed", error.message);
+    }
+  };
+
+  const addActivity = () => {
+    return (
+      <>
+        <OperationActivityForm wellData={wellData} onSubmit={editWell} />
+        <button onClick={() => setNewActivity(false)}>back</button>
+      </>
+    );
+  };
   return (
     <>
       {wellData.type === "Well" ? (
@@ -88,6 +108,13 @@ function WellDetailPage({ user, setUser }) {
             </div>
             <div>
               {wellData.operationActivities.length > 0 ? showActivity() : null}
+              {newActivity ? (
+                addActivity()
+              ) : (
+                <button onClick={() => setNewActivity(true)}>
+                  Add OP Activity
+                </button>
+              )}
             </div>
           </div>
         </div>

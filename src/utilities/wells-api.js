@@ -23,3 +23,7 @@ export function getDevelopmentWells() {
 export async function addWell(wellData) {
   return sendRequest(`${BASE_URL}/addwell`, "POST", wellData);
 }
+
+export async function editWell(wellData) {
+  return sendRequest(`${BASE_URL}/editwell/${wellData._id}`, "PUT", wellData);
+}

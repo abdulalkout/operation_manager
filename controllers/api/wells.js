@@ -6,6 +6,7 @@ module.exports = {
   getProductionWells,
   getDevelopmentWells,
   addWells,
+  editWell,
 };
 
 async function showWell(req, res) {
@@ -87,5 +88,29 @@ async function addWells(req, res) {
     console.log("im in the controller");
     console.error("Error adding well:", e.message);
     res.status(400).json({ msg: e.message });
+  }
+}
+
+// Edit Well
+async function editWell(req, res) {
+  try {
+    const wellId = req.params.id;
+    const updatedWellData = req.body;
+
+    // Check if the well exists
+    const existingWell = await Well.findById(wellId);
+    if (!existingWell) {
+      return res.status(404).json({ message: "Well not found" });
+    }
+
+    // Update the well data
+    const updatedWell = await Well.findByIdAndUpdate(wellId, updatedWellData, {
+      new: true,
+    });
+
+    res.json(updatedWell);
+  } catch (error) {
+    console.error("Error editing well:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 }

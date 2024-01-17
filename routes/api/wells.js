@@ -10,6 +10,8 @@ router.get("/production", wellsCtrl.getProductionWells);
 router.get("/:id", wellsCtrl.showWell);
 // Post ? new well
 router.post("/addwell", wellsCtrl.addWells);
+// Post ? edit well
+router.put("/editwell/:id", wellsCtrl.editWell);
 // GET /api/wells
 router.get("/", wellsCtrl.getWells);
 
