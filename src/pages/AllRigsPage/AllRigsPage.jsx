@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import * as RigsAPI from "../../utilities/rigs-api";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
+import AddRigForm from "../../components/AddRigForm/AddRigForm";
 
 function AllRigsPage({ user, setUser }) {
   const [allRigs, setAllRigs] = useState([]);
+  const [addNewRig, setAddNewRig] = useState(false);
   useEffect(() => {
     async function getRigs() {
       const rigs = await RigsAPI.getAll();
@@ -15,12 +17,35 @@ function AllRigsPage({ user, setUser }) {
     getRigs();
     console.log(allRigs);
   }, []);
+
+  const addRigForm = () => {
+    return (
+      <div>
+        <div className="add-form">
+          <AddRigForm />
+          {/* <OperationActivityForm /> */}
+        </div>
+        <button
+          onClick={() => {
+            setAddNewRig(false);
+          }}
+        >
+          returen to all Rigs
+        </button>
+      </div>
+    );
+  };
   return (
     <div className="allRigs-div">
       <OpNavbar user={user} setUser={setUser} />
-      <div>
-        <DataComponentsList allData={allRigs} />
-      </div>
+      {addNewRig ? (
+        addRigForm()
+      ) : (
+        <div>
+          <DataComponentsList allData={allRigs} />
+          <button onClick={() => setAddNewRig(true)}>Add new well</button>
+        </div>
+      )}
     </div>
   );
 }

@@ -28,6 +28,8 @@ const wellSchema = new Schema(
         requester: { type: String, required: true },
         approval: { type: String, required: true },
         production: Number,
+        createdAt: { type: Date, default: Date.now },
+        updatedAt: { type: Date, default: Date.now },
       },
     ],
   },

@@ -5,6 +5,7 @@ const Rig = require("../../models/rig");
 module.exports = {
   getRigs,
   showRig,
+  addRigs,
   cart,
   addToCart,
   setItemQtyInCart,
@@ -83,6 +84,30 @@ async function showRig(req, res) {
     const rig = await Rig.findById(req.params.id);
     res.status(200).json(rig);
   } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+async function addRigs(req, res) {
+  try {
+    console.log("Received data:", req.body);
+
+    const { name, status, type, well, operationActivities } = req.body;
+
+    const activities = operationActivities || [];
+    const wellAttached = well || "";
+    const rig = await Rig.create({
+      name,
+      well: wellAttached,
+      type,
+      status,
+      operationActivities: activities,
+    });
+
+    console.log("Rig added successfully:", rig);
+    res.status(201).json(rig);
+  } catch (e) {
+    console.error("Error adding rig:", e.message);
     res.status(400).json({ msg: e.message });
   }
 }
