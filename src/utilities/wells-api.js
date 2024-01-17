@@ -21,5 +21,5 @@ export function getDevelopmentWells() {
 }
 
 export async function addWell(wellData) {
-  return sendRequest(BASE_URL, "POST", wellData);
+  return sendRequest(`${BASE_URL}/addwell`, "POST", wellData);
 }

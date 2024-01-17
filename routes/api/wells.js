@@ -8,6 +8,8 @@ router.get("/development", wellsCtrl.getDevelopmentWells);
 router.get("/production", wellsCtrl.getProductionWells);
 // GET /api/wells/:id
 router.get("/:id", wellsCtrl.showWell);
+// Post ? new well
+router.post("/addwell", wellsCtrl.addWells);
 // GET /api/wells
 router.get("/", wellsCtrl.getWells);
 

@@ -5,6 +5,7 @@ module.exports = {
   getWells,
   getProductionWells,
   getDevelopmentWells,
+  addWells,
 };
 
 async function showWell(req, res) {
@@ -48,6 +49,43 @@ async function getDevelopmentWells(req, res) {
     res.status(200).json(developmentWells);
   } catch (e) {
     console.error("Error fetching development wells:", e.message);
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+//add new
+async function addWells(req, res) {
+  try {
+    console.log("Received data:", req.body);
+
+    const {
+      name,
+      field,
+      latitude,
+      longitude,
+      status,
+      operation,
+      rig,
+      operationActivities,
+    } = req.body;
+
+    const activities = operationActivities || [];
+    const rigAttached = rig || "";
+    const well = await Well.create({
+      name,
+      field,
+      latitude,
+      longitude,
+      status,
+      operation,
+      rig: rigAttached,
+      operationActivities: activities,
+    });
+    console.log("im in the controller");
+    res.status(201).json(well);
+  } catch (e) {
+    console.log("im in the controller");
+    console.error("Error adding well:", e.message);
     res.status(400).json({ msg: e.message });
   }
 }

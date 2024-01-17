@@ -7,10 +7,11 @@ function AddWellForm() {
   const initialWellState = {
     name: "",
     field: "",
-    location: [],
+    longitude: 0,
+    latitude: 0,
     status: "Working",
     operation: "Production",
-    rig: "", // Assume rig is assigned later, so an empty string for now
+    rig: "",
   };
 
   const [newWell, setNewWell] = useState(initialWellState);
@@ -23,7 +24,6 @@ function AddWellForm() {
         setAllRigs(rigs);
       } catch (error) {
         console.log("Error fetching rigs:", error.message);
-        // Handle the error, e.g., display an error message to the user
       }
     }
     getRigs();
@@ -67,7 +67,7 @@ function AddWellForm() {
 
       <label>Latitude:</label>
       <input
-        type="text"
+        type="number"
         name="latitude"
         value={newWell.latitude}
         onChange={handleChange}
@@ -76,7 +76,7 @@ function AddWellForm() {
 
       <label>Longitude:</label>
       <input
-        type="text"
+        type="number"
         name="longitude"
         value={newWell.longitude}
         onChange={handleChange}

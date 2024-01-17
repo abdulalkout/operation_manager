@@ -73,7 +73,7 @@ function WellDetailPage({ user, setUser }) {
               </div>
               <div>
                 <p>
-                  Lat: {wellData.location[0]}, Long: {wellData.location[1]}
+                  Lat: {wellData.latitude}, Long: {wellData.longitude}
                 </p>
                 <p>Operation: {wellData.operation}</p>
                 <div>
