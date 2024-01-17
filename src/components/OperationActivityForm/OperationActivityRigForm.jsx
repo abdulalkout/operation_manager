@@ -1,7 +1,8 @@
+// OperationActivityForm.js
 import React, { useState } from "react";
 import "./OperationActivityForm.css";
 
-function OperationActivityForm({ wellData, onSubmit }) {
+function OperationActivityRigForm({ rigData, onSubmit }) {
   const [activityData, setActivityData] = useState({
     name: "",
     status: "",
@@ -20,8 +21,8 @@ function OperationActivityForm({ wellData, onSubmit }) {
     evt.preventDefault();
     try {
       const formData = {
-        ...wellData,
-        operationActivities: [...wellData.operationActivities, activityData],
+        ...rigData,
+        operationActivities: [...rigData.operationActivities, activityData],
       };
       await onSubmit(formData);
       setActivityData({
@@ -34,7 +35,7 @@ function OperationActivityForm({ wellData, onSubmit }) {
         production: "",
       });
     } catch (error) {
-      console.log("Edit well failed", error.message);
+      console.log("Edit rig failed", error.message);
     }
   };
 
@@ -133,4 +134,4 @@ function OperationActivityForm({ wellData, onSubmit }) {
   );
 }
 
-export default OperationActivityForm;
+export default OperationActivityRigForm;

@@ -13,3 +13,7 @@ export function getRigById(id) {
 export async function addRig(rigData) {
   return sendRequest(`${BASE_URL}/addRig`, "POST", rigData);
 }
+
+export async function editRig(rigData) {
+  return sendRequest(`${BASE_URL}/editrig/${rigData._id}`, "PUT", rigData);
+}

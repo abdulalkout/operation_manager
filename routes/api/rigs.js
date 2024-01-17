@@ -6,6 +6,8 @@ const rigsCtrl = require("../../controllers/api/rigs");
 router.get("/:id", rigsCtrl.showRig);
 // Post ? new well
 router.post("/addRig", rigsCtrl.addRigs);
+// Post - Add Rig Activity
+router.put("/editrig/:id", rigsCtrl.addRigActivity);
 // GET /all rigs
 router.get("/", rigsCtrl.getRigs);
 

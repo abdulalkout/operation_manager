@@ -11,6 +11,7 @@ module.exports = {
   setItemQtyInCart,
   checkout,
   history,
+  addRigActivity,
 };
 
 // A cart is the unpaid order for a user
@@ -109,5 +110,28 @@ async function addRigs(req, res) {
   } catch (e) {
     console.error("Error adding rig:", e.message);
     res.status(400).json({ msg: e.message });
+  }
+}
+
+async function addRigActivity(req, res) {
+  try {
+    const rigId = req.params.id;
+    const updatedRigData = req.body;
+
+    // Check if the rig exists
+    const existingRig = await Rig.findById(rigId);
+    if (!existingRig) {
+      return res.status(404).json({ message: "Rig not found" });
+    }
+
+    // Update the rig data
+    const updatedRig = await Rig.findByIdAndUpdate(rigId, updatedRigData, {
+      new: true,
+    });
+
+    res.json(updatedRig);
+  } catch (error) {
+    console.error("Error adding rig activity:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 }

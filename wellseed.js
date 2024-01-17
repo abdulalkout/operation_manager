@@ -120,24 +120,38 @@ const Rig = require("./models/rig");
         well: wells[0]._id, // Assign Rig 1 to Well 1
         type: "Rig",
         status: "Working",
+        operationActivities: [
+          {
+            name: "Activity 4",
+            status: "Status 4",
+            operationText: "Operation Text 4",
+            request: "Pending",
+            requester: "User 4",
+            approval: "Manager 4",
+            production: 400,
+          },
+        ],
       },
       {
         name: "Rig 2",
         well: wells[2]._id, // Assign Rig 2 to Well 3
         type: "Workover",
         status: "Standby",
+        operationActivities: [],
       },
       {
         name: "Rig 3",
         well: wells[4]._id, // Assign Rig 3 to Well 5
         type: "Rig",
         status: "Working",
+        operationActivities: [],
       },
       {
         name: "RigLess",
         well: wells[1]._id, // Assign Rig 3 to Well 5
         type: "Rigless",
         status: "Working",
+        operationActivities: [],
       },
     ]);
 

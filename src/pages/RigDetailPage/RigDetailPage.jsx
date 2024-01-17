@@ -1,16 +1,18 @@
-import React from "react";
+// RigDetailPage.js
+import React, { useState, useEffect } from "react";
 import "./RigDetailPage.css";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import * as wllsAPI from "../../utilities/wells-api";
 import * as rigsAPI from "../../utilities/rigs-api";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import { Link } from "react-router-dom";
+import OperationActivityRigForm from "../../components/OperationActivityForm/OperationActivityRigForm";
 
 function RigDetailPage({ user, setUser }) {
   const { id } = useParams();
   const [wellData, setWellData] = useState({});
   const [rigData, setRigData] = useState({});
+  const [newActivity, setNewActivity] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,15 +25,63 @@ function RigDetailPage({ user, setUser }) {
             const foundWell = await wllsAPI.getById(foundRig.well);
             setWellData(foundWell);
           } catch (error) {
-            console.log("Well data was not fetched", error.messege);
+            console.log("Well data was not fetched", error.message);
           }
         }
       } catch (error) {
-        console.error("Error fetching details:", error);
+        console.error("Error fetching details:", error.message);
       }
     }
     fetchData();
   }, [id]);
+
+  const showActivity = () => {
+    return (
+      <div className="activity-div">
+        {rigData.operationActivities &&
+        rigData.operationActivities.length > 0 ? (
+          rigData.operationActivities.map((activity, i) => (
+            <div key={i}>
+              <div className="operation-activity-header">
+                <p>{activity.name}</p>
+                <p>{activity.status}</p>
+                <p>{activity.request}</p>
+              </div>
+              <div className="operation-activity-body">
+                <p>{activity.operationText}</p>
+              </div>
+              <div className="operation-activity-header">
+                <p>Requested by: {activity.requester}</p>
+                <p>Aproved by: {activity.approval}</p>
+              </div>
+              <p>Production: {activity.production} ppg</p>
+            </div>
+          ))
+        ) : (
+          <p>No activities available</p>
+        )}
+      </div>
+    );
+  };
+
+  const editRig = async (formData) => {
+    try {
+      await rigsAPI.editRig(formData);
+      const updatedRig = await rigsAPI.getRigById(id);
+      setRigData(updatedRig);
+    } catch (error) {
+      console.log("Edit rig failed", error.message);
+    }
+  };
+
+  const addActivity = () => {
+    return (
+      <>
+        <OperationActivityRigForm rigData={rigData} onSubmit={editRig} />
+        <button onClick={() => setNewActivity(false)}>Back</button>
+      </>
+    );
+  };
 
   return (
     <>
@@ -54,6 +104,15 @@ function RigDetailPage({ user, setUser }) {
                 </p>
               </div>
             </div>
+          </div>
+          <div>
+            {showActivity()}
+            {!newActivity && (
+              <button onClick={() => setNewActivity(true)}>
+                Add OP Activity
+              </button>
+            )}
+            {newActivity && addActivity()}
           </div>
         </div>
       </div>
