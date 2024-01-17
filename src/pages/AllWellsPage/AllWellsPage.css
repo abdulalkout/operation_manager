@@ -1,3 +1,11 @@
 .allwells-div {
   display: flex;
 }
+
+.add-form {
+  margin-left: 200px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}

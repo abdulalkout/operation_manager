@@ -1,0 +1,29 @@
+.well-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.well-form label {
+  margin-bottom: 5px;
+}
+
+.well-form input,
+.well-form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.well-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.well-form button:hover {
+  background-color: #45a049;
+}

@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import * as wllsAPI from "../../utilities/wells-api";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
+import AddWellForm from "../../components/AddWellForm/AddWellForm";
+import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 
 function AllWellsPage({ user, setUser }) {
   const [allWells, setAllWells] = useState([]);
   const [addNewWell, setAddNewWell] = useState(false);
+  const [newWell, setNewWell] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -24,6 +27,10 @@ function AllWellsPage({ user, setUser }) {
   const addWellForm = () => {
     return (
       <div>
+        <div className="add-form">
+          <AddWellForm />
+          {/* <OperationActivityForm /> */}
+        </div>
         <button
           onClick={() => {
             setAddNewWell(false);

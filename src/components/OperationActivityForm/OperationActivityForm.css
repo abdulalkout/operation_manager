@@ -1,0 +1,36 @@
+.activity-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.activity-form label {
+  margin-bottom: 5px;
+}
+
+.activity-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical; /* Allow vertical resizing of the textarea */
+}
+
+.activity-form input,
+.activity-form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.activity-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.activity-form button:hover {
+  background-color: #45a049;
+}
