@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import * as wllsAPI from "../../utilities/wells-api";
 import * as rigsAPI from "../../utilities/rigs-api";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
+import { Link } from "react-router-dom";
 
 function WellDetailPage({ user, setUser }) {
   const { id } = useParams();
@@ -17,14 +18,17 @@ function WellDetailPage({ user, setUser }) {
         setWellData(foundWell);
 
         if (foundWell.rig) {
-          const foundRig = await rigsAPI.getRigById(foundWell.rig);
-          setRigData(foundRig);
+          try {
+            const foundRig = await rigsAPI.getRigById(foundWell.rig);
+            setRigData(foundRig);
+          } catch (error) {
+            console.log("Rig data was not fetched", error.messege);
+          }
         }
       } catch (error) {
         console.error("Error fetching well details:", error);
       }
     }
-
     fetchData();
     console.log(rigData);
   }, [id]);
@@ -34,7 +38,7 @@ function WellDetailPage({ user, setUser }) {
       <div className="activity-div">
         {wellData.operationActivities.map((activity, i) => {
           return (
-            <div>
+            <div key={i}>
               <div className="operation-activity-header">
                 <p>{activity.name}</p>
                 <p>{activity.status}</p>
@@ -75,7 +79,9 @@ function WellDetailPage({ user, setUser }) {
                 <div>
                   <p>
                     Rig: {rigData ? rigData.name : "Rigless"}
-                    <button className="rig-button">Show Rig</button>
+                    <Link to={`/rig/${wellData.rig}`}>
+                      <button className="rig-button">Show Rig</button>
+                    </Link>
                   </p>
                 </div>
               </div>

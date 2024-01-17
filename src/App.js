@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import DevelopmentWells from "./pages/DevelopmentWells/DevelopmentWells.jsx";
 import ProductionWells from "./pages/ProductionWells/ProductionWells.jsx";
 import WellDetailPage from "./pages/WellDetailPage/WellDetailPage.jsx";
+import RigDetailPage from "./pages/RigDetailPage/RigDetailPage.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -44,6 +45,10 @@ function App() {
             <Route
               path="/well/:id"
               element={<WellDetailPage user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/rig/:id"
+              element={<RigDetailPage user={user} setUser={setUser} />}
             />
             <Route path="/auth" element={<>Already signed in</>} />
           </Routes>
