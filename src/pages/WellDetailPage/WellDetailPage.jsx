@@ -7,6 +7,7 @@ import * as rigsAPI from "../../utilities/rigs-api";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 import { Link } from "react-router-dom";
+import WellProductionGraph from "../../components/WellProductionGraph/WellProductionGraph";
 
 function WellDetailPage({ user, setUser }) {
   const { id } = useParams();
@@ -126,6 +127,15 @@ function WellDetailPage({ user, setUser }) {
                 </div>
               )}
             </div>
+          </div>
+          <div>
+            {/* {wellData.operationActivities.length > 0 ? (
+              <>
+                <WellProductionGraph
+                  productionData={wellData.operationActivities}
+                />
+              </>
+            ) : null} */}
           </div>
         </div>
       ) : null}

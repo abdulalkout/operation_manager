@@ -1,30 +1,28 @@
 import React from "react";
 import "./AllRigsPage.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
-import * as RigsAPI from "../../utilities/rigs-api";
+import { ApiContext } from "../../context/ApiContext";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
 import AddRigForm from "../../components/AddRigForm/AddRigForm";
 
 function AllRigsPage({ user, setUser }) {
-  const [allRigs, setAllRigs] = useState([]);
   const [addNewRig, setAddNewRig] = useState(false);
-  const [refresh, setRefresh] = useState(false);
-  useEffect(() => {
-    async function getRigs() {
-      const rigs = await RigsAPI.getAll();
-      setAllRigs(rigs);
-    }
-    getRigs();
-    console.log(allRigs);
-  }, [refresh]);
+  const { allRigs, refresh, setRefresh } = useContext(ApiContext);
+  // useEffect(() => {
+  //   async function getRigs() {
+  //     const rigs = await RigsAPI.getAll();
+  //     setAllRigs(rigs);
+  //   }
+  //   getRigs();
+  //   console.log(allRigs);
+  // }, [refresh]);
 
   const addRigForm = () => {
     return (
       <div>
         <div className="add-form">
           <AddRigForm />
-          {/* <OperationActivityForm /> */}
         </div>
         <button
           onClick={() => {
