@@ -33,3 +33,123 @@
   border-radius: 20px;
   padding: 0 15px 0 15px;
 }
+
+.section-2 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 50px 0;
+}
+
+.circle {
+  text-align: center;
+}
+
+.circle i {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.section-3 {
+  background-color: #fff;
+  padding: 50px 50px;
+  display: flex;
+}
+.section-3-img {
+  width: 700px;
+  border-radius: 20px;
+}
+
+.section-3-div {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2%;
+}
+
+.section-3-div h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.section-3-div p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.section-3-div .newProductButton {
+  background-color: black;
+  border: none;
+  color: white;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 15px 0 15px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 40px;
+}
+
+.section-3-div .newProductButton:hover {
+  background-color: #333;
+}
+
+@media only screen and (max-width: 800px) {
+  .circle {
+    margin-bottom: 20px;
+  }
+
+  .section-3 {
+    background-color: #fff;
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-3-img {
+    width: auto;
+    border-radius: 20px;
+  }
+
+  .section-3-div {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2%;
+    font-size: small;
+  }
+
+  .section-3-div h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .section-3-div p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .section-3-div .newProductButton {
+    background-color: black;
+    border: none;
+    color: white;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 15px 0 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    line-height: 40px;
+  }
+
+  .section-3-div .newProductButton:hover {
+    background-color: #333;
+  }
+}

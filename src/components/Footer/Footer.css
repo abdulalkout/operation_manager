@@ -1,0 +1,47 @@
+/* Footer.css */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a,
+.footer-social a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 1em;
+}
+
+.footer-social a {
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #0077b5; /* LinkedIn blue color */
+}
+
+@media only screen and (max-width: 800px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links,
+  .footer-social {
+    margin-bottom: 20px;
+  }
+
+  .footer-links a,
+  .footer-social a {
+    display: block;
+    margin: 10px 0;
+  }
+}

@@ -58,10 +58,6 @@ function Navbar() {
             )}
           </Link>
         </div>
-
-        <div className="mobileMenuIcon" onClick={toggleMobileMenu}>
-          &#9776;
-        </div>
       </div>
     </div>
   );
