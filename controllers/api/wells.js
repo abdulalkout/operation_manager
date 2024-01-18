@@ -8,6 +8,7 @@ module.exports = {
   addWells,
   editWell,
   deleteWell,
+  getAllWellsProductionData,
 };
 
 async function showWell(req, res) {
@@ -124,5 +125,22 @@ async function deleteWell(req, res) {
   } catch (error) {
     console.error("Error deleting well:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+// Get production data for all wells
+async function getAllWellsProductionData(req, res) {
+  try {
+    const wells = await Well.find({});
+    const productionData = wells.map((well) => ({
+      wellName: well.name,
+      productionData: well.operationActivities.map((activity) => ({
+        production: activity.production,
+        createdAt: activity.createdAt,
+      })),
+    }));
+    res.status(200).json(productionData);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
   }
 }

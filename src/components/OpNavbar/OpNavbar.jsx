@@ -27,6 +27,8 @@ function Navbar({ user, setUser }) {
         <Link to="/development">Drilling</Link>
         <hr />
         <Link to="/Rigs">Rigs</Link>
+        <hr />
+        <Link to="/graphs">Production Graphs</Link>
       </div>
     </div>
   );

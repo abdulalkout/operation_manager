@@ -31,3 +31,7 @@ export async function editWell(wellData) {
 export async function deleteWell(id) {
   return sendRequest(`${BASE_URL}/delete/${id}`, "DELETE");
 }
+
+export async function getAllWellsProductionData() {
+  return sendRequest(`${BASE_URL}/allproductiondata`);
+}

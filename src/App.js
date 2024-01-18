@@ -12,6 +12,7 @@ import DevelopmentWells from "./pages/DevelopmentWells/DevelopmentWells.jsx";
 import ProductionWells from "./pages/ProductionWells/ProductionWells.jsx";
 import WellDetailPage from "./pages/WellDetailPage/WellDetailPage.jsx";
 import RigDetailPage from "./pages/RigDetailPage/RigDetailPage.jsx";
+import ProductionGraphs from "./pages/ProductionGraphs/ProductionGraphs.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="/development"
               element={<DevelopmentWells user={user} setUser={setUser} />}
+            />
+            <Route
+              path="/graphs"
+              element={<ProductionGraphs user={user} setUser={setUser} />}
             />
             <Route
               path="/Rigs"
