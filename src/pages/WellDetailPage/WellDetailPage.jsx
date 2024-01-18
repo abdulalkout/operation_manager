@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./WellDetailPage.css";
+import html2pdf from "html2pdf.js";
 import { useParams } from "react-router-dom";
 import * as wllsAPI from "../../utilities/wells-api";
 import * as rigsAPI from "../../utilities/rigs-api";
@@ -12,6 +13,11 @@ function WellDetailPage({ user, setUser }) {
   const [wellData, setWellData] = useState({});
   const [rigData, setRigData] = useState(null);
   const [newActivity, setNewActivity] = useState(false);
+
+  const downloadAsPDF = () => {
+    const element = document.querySelector(".show-div");
+    html2pdf(element);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -112,9 +118,12 @@ function WellDetailPage({ user, setUser }) {
               {newActivity ? (
                 addActivity()
               ) : (
-                <button onClick={() => setNewActivity(true)}>
-                  Add OP Activity
-                </button>
+                <div>
+                  <button onClick={() => setNewActivity(true)}>
+                    Add OP Activity
+                  </button>
+                  <button onClick={downloadAsPDF}>Download as PDF</button>
+                </div>
               )}
             </div>
           </div>
