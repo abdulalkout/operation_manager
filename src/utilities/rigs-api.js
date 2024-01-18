@@ -17,3 +17,7 @@ export async function addRig(rigData) {
 export async function editRig(rigData) {
   return sendRequest(`${BASE_URL}/editrig/${rigData._id}`, "PUT", rigData);
 }
+
+export async function deleteRig(id) {
+  return sendRequest(`${BASE_URL}/delete/${id}`, "DELETE");
+}

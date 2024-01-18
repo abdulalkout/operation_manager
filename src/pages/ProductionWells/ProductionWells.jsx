@@ -6,6 +6,8 @@ import DataComponentsList from "../../components/DataComponents/DataComponentsLi
 
 function ProductionWells({ user, setUser }) {
   const [productionWells, setProductionWells] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -17,13 +19,13 @@ function ProductionWells({ user, setUser }) {
     }
     console.log(productionWells);
     fetchData();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="allwells-div">
       <OpNavbar user={user} setUser={setUser} />
       <div>
-        <DataComponentsList allData={productionWells} />
+        <DataComponentsList allData={productionWells} setRefresh={setRefresh} />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ module.exports = {
   checkout,
   history,
   addRigActivity,
+  deleteRig,
 };
 
 // A cart is the unpaid order for a user
@@ -132,6 +133,18 @@ async function addRigActivity(req, res) {
     res.json(updatedRig);
   } catch (error) {
     console.error("Error adding rig activity:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+// controllers/api/rigs.js
+async function deleteRig(req, res) {
+  try {
+    const rigId = req.params.id;
+    await Rig.findOneAndDelete(rigId);
+    res.json({ message: "Rig deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting rig:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

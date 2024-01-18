@@ -9,6 +9,7 @@ import AddRigForm from "../../components/AddRigForm/AddRigForm";
 function AllRigsPage({ user, setUser }) {
   const [allRigs, setAllRigs] = useState([]);
   const [addNewRig, setAddNewRig] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     async function getRigs() {
       const rigs = await RigsAPI.getAll();
@@ -16,7 +17,7 @@ function AllRigsPage({ user, setUser }) {
     }
     getRigs();
     console.log(allRigs);
-  }, []);
+  }, [refresh]);
 
   const addRigForm = () => {
     return (
@@ -42,7 +43,7 @@ function AllRigsPage({ user, setUser }) {
         addRigForm()
       ) : (
         <div>
-          <DataComponentsList allData={allRigs} />
+          <DataComponentsList allData={allRigs} setRefresh={setRefresh} />
           <button onClick={() => setAddNewRig(true)}>Add new well</button>
         </div>
       )}

@@ -10,7 +10,8 @@ import OperationActivityForm from "../../components/OperationActivityForm/Operat
 function AllWellsPage({ user, setUser }) {
   const [allWells, setAllWells] = useState([]);
   const [addNewWell, setAddNewWell] = useState(false);
-  const [newWell, setNewWell] = useState();
+  // const [newWell, setNewWell] = useState();
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,7 +23,7 @@ function AllWellsPage({ user, setUser }) {
       }
     }
     fetchData();
-  }, []);
+  }, [refresh]);
 
   const addWellForm = () => {
     return (
@@ -49,7 +50,7 @@ function AllWellsPage({ user, setUser }) {
         addWellForm()
       ) : (
         <div>
-          <DataComponentsList allData={allWells} />
+          <DataComponentsList allData={allWells} setRefresh={setRefresh} />
           <button onClick={() => setAddNewWell(true)}>Add new well</button>
         </div>
       )}

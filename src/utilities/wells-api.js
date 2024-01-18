@@ -27,3 +27,7 @@ export async function addWell(wellData) {
 export async function editWell(wellData) {
   return sendRequest(`${BASE_URL}/editwell/${wellData._id}`, "PUT", wellData);
 }
+
+export async function deleteWell(id) {
+  return sendRequest(`${BASE_URL}/delete/${id}`, "DELETE");
+}

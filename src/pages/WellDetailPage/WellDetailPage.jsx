@@ -79,6 +79,7 @@ function WellDetailPage({ user, setUser }) {
       </>
     );
   };
+
   return (
     <>
       {wellData.type === "Well" ? (

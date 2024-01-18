@@ -7,6 +7,7 @@ module.exports = {
   getDevelopmentWells,
   addWells,
   editWell,
+  deleteWell,
 };
 
 async function showWell(req, res) {
@@ -111,6 +112,17 @@ async function editWell(req, res) {
     res.json(updatedWell);
   } catch (error) {
     console.error("Error editing well:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+async function deleteWell(req, res) {
+  try {
+    const wellId = req.params.id;
+    await Well.findOneAndDelete(wellId);
+    res.json({ message: "Well deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting well:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

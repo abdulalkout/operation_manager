@@ -8,6 +8,8 @@ router.get("/:id", rigsCtrl.showRig);
 router.post("/addRig", rigsCtrl.addRigs);
 // Post - Add Rig Activity
 router.put("/editrig/:id", rigsCtrl.addRigActivity);
+// delete
+router.delete("/delete/:id", rigsCtrl.deleteRig);
 // GET /all rigs
 router.get("/", rigsCtrl.getRigs);
 

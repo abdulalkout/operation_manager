@@ -13,6 +13,8 @@ router.post("/addwell", wellsCtrl.addWells);
 // Post ? edit well
 router.put("/editwell/:id", wellsCtrl.editWell);
 // GET /api/wells
+router.delete("/delete/:id", wellsCtrl.deleteWell);
+// GET /api/wells
 router.get("/", wellsCtrl.getWells);
 
 module.exports = router;
