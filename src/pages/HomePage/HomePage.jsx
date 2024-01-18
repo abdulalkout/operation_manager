@@ -8,7 +8,7 @@ function HomePage() {
         <div className="landing-image">
           <img
             className="offshore-image"
-            src="https://www.world-energy.org/uploadfile/2021/0716/20210716022613809.jpg"
+            src="https://eco-cdn.iqpc.com/eco/images/channel_content/images/biggest_oil_and_gas_companies.webp"
           />
         </div>
         <div className="section-1-div">
