@@ -17,3 +17,23 @@
 .card-pics {
   width: 100px;
 }
+
+.delete-button,
+.show-butoon {
+  border: none;
+  background-color: white;
+  margin: 10px;
+  border: solid 1px black;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.delete-button:hover {
+  color: brown;
+  cursor: pointer;
+}
+
+.show-butoon:hover {
+  color: var(--green);
+  cursor: pointer;
+}

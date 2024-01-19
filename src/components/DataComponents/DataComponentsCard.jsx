@@ -37,9 +37,13 @@ function DataComponentsCard({ dataItem, setRefresh }) {
         <p>{dataItem.field ? dataItem.field : null}</p>
         <p>{dataItem.status}</p>
         <Link to={`/well/${dataItem._id}`}>
-          <button>Show</button>
+          <button className="show-butoon">
+            <i class="fa-solid fa-eye"></i>
+          </button>
         </Link>
-        <button onClick={deleteOneWell}>Delete</button>
+        <button className="delete-button" onClick={deleteOneWell}>
+          <i class="fa-solid fa-trash"></i>
+        </button>
       </div>
     );
   };
@@ -52,8 +56,12 @@ function DataComponentsCard({ dataItem, setRefresh }) {
         <p>{dataItem.field ? dataItem.field : null}</p>
         <p>{dataItem.status}</p>
         <Link to={`/rig/${dataItem._id}`}>
-          <button>Show</button>
-          <button onClick={deleteOneRig}>Delete</button>
+          <button className="show-butoon">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <button className="delete-button" onClick={deleteOneRig}>
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </Link>
       </div>
     );
