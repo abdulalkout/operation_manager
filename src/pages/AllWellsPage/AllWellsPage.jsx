@@ -36,7 +36,11 @@ function AllWellsPage({ user, setUser }) {
       ) : (
         <div>
           <DataComponentsList allData={allWells} setRefresh={setRefresh} />
-          <button onClick={() => setAddNewWell(true)}>Add new well</button>
+          <button className="add-new" onClick={() => setAddNewWell(true)}>
+            <i class="fa-solid fa-plus"></i>
+            {" Add new Well "}
+            <i class="fa-solid fa-oil-well"></i>
+          </button>
         </div>
       )}
     </div>
