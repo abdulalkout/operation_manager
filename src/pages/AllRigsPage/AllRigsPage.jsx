@@ -11,18 +11,15 @@ function AllRigsPage({ user, setUser }) {
   const { allRigs, refresh, setRefresh } = useContext(ApiContext);
 
   const addRigForm = () => {
+    const rigImg =
+      "https://img.freepik.com/premium-photo/oil-rig-isolated-background-oil-industry-design_889761-2031.jpg";
+
     return (
-      <div>
+      <div className="adding-page">
         <div className="add-form">
-          <AddRigForm />
+          <AddRigForm setAddNewRig={setAddNewRig} />
         </div>
-        <button
-          onClick={() => {
-            setAddNewRig(false);
-          }}
-        >
-          returen to all Rigs
-        </button>
+        <img className="add-image" src={rigImg} />
       </div>
     );
   };

@@ -3,10 +3,10 @@ import "./AddRigForm.css"; // Add your styling if needed
 import { addRig } from "../../utilities/rigs-api"; // Adjust the import to match your API
 import * as wllsAPI from "../../utilities/wells-api";
 
-function AddRigForm() {
+function AddRigForm({ setAddNewRig }) {
   const initialRigState = {
     name: "",
-    well: "", // Assuming this is the well ID, modify as needed
+    well: "",
     type: "Rig",
     status: "Working",
   };
@@ -17,7 +17,6 @@ function AddRigForm() {
   useEffect(() => {
     async function getWells() {
       try {
-        // Assuming wllsAPI.getAll() is your method to fetch wells
         const wells = await wllsAPI.getAll();
         setAllWells(wells);
       } catch (error) {
@@ -86,6 +85,14 @@ function AddRigForm() {
       </select>
 
       <button type="submit">Add Rig</button>
+      <button
+        id="back-button"
+        onClick={() => {
+          setAddNewRig(false);
+        }}
+      >
+        <i class="fa-solid fa-backward-step"></i> Back
+      </button>
     </form>
   );
 }

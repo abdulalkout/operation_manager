@@ -1,0 +1,39 @@
+.rig-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.rig-form label {
+  margin-bottom: 5px;
+}
+
+.rig-form input,
+.rig-form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.rig-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.rig-form button:hover {
+  background-color: #45a049;
+}
+
+#back-button {
+  align-self: center;
+  width: 194px;
+  height: 30px;
+  margin-top: 10px;
+  background-color: brown;
+  border: none;
+  color: white;
+}
