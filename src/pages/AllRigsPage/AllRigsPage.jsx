@@ -34,7 +34,11 @@ function AllRigsPage({ user, setUser }) {
       ) : (
         <div>
           <DataComponentsList allData={allRigs} setRefresh={setRefresh} />
-          <button onClick={() => setAddNewRig(true)}>Add new well</button>
+          <button className="add-new" onClick={() => setAddNewRig(true)}>
+            <i class="fa-solid fa-plus"></i>
+            {" Add new Well "}
+            <i class="fa-solid fa-oil-well"></i>
+          </button>
         </div>
       )}
     </div>

@@ -10,9 +10,30 @@
   width: 100%;
 }
 
+.add-new {
+  margin-left: 40%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.add-new:hover {
+  color: var(--green);
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 800px) {
   .allRigs-div {
     display: flex;
     flex-direction: column;
+  }
+  .add-new {
+    margin-left: 25%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    font-size: large;
   }
 }
