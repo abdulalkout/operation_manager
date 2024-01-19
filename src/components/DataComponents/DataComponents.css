@@ -6,7 +6,7 @@
 
 .item-card {
   width: 100px;
-  background-color: var(--light-2);
+  /* background-color: var(--light-2); */
   padding: 20px;
   text-align: center;
   border-radius: 20px;

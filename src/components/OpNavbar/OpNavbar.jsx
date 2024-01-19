@@ -11,10 +11,11 @@ function Navbar({ user, setUser }) {
     <div className="op-navebar-div">
       <div>
         <p>Welcome {user.name}, </p>
-        <hr />
         <p> Logged In : {user.email}</p>
-        <Link to="" onClick={handleLogOut}>
-          <button className="logout">Log-Out</button>
+        <Link to="/" onClick={handleLogOut}>
+          <button className="logout">
+            <i className="fas fa-sign-in-alt"></i>
+          </button>
         </Link>
       </div>
       <hr />

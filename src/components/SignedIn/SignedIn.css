@@ -16,7 +16,13 @@
   height: 50px;
   background-color: brown;
   border-radius: 50%;
-  font-size: larger;
+  font-size: large;
+  color: white;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #543b3b;
 }
 
 @media only screen and (max-width: 800px) {

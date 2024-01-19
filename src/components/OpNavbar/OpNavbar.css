@@ -1,15 +1,43 @@
 .op-navebar-div {
-  /* top: 60px;
-  left: 0;
-  z-index: 2;
-  position: sticky; */
-  width: 150px;
-  height: auto;
-  background-color: var(--green);
+  width: 200px;
+  height: 100vh;
+  background-color: #222;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.op-navebar-div p {
+  margin: 10px 0;
 }
 
 .logout {
-  background-color: var(--light);
   border: none;
-  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: brown;
+  border-radius: 50%;
+  font-size: small;
+  color: white;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #543b3b;
+}
+
+.op-navebar-div a {
+  text-decoration: none;
+  color: white;
+  margin: 10px 0;
+}
+
+.op-navebar-div hr {
+  width: 80%;
+  border: 0.5px solid #333;
 }

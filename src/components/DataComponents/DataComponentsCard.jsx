@@ -6,10 +6,10 @@ import * as rigsAPI from "../../utilities/rigs-api";
 
 function DataComponentsCard({ dataItem, setRefresh }) {
   const rigPic =
-    "https://www.lassarat.com/wp-content/uploads/2019/07/Pictos-08.png";
+    "https://icon-library.com/images/drilling-rig-icon/drilling-rig-icon-12.jpg";
 
   const wellPic =
-    "https://jrq.gsv.mybluehost.me/wp-content/uploads/2023/07/hydrocarbons-1.png";
+    "https://media.istockphoto.com/id/1183765946/vector/oil-derrick-well-pump-monochrome-icon.jpg?s=612x612&w=0&k=20&c=cBZVgPl01DJm6egVsj4-S5_nGZrIztbSa606pxOGM7g=";
 
   const deleteOneWell = async () => {
     try {
