@@ -12,18 +12,22 @@ function AllWellsPage({ user, setUser }) {
   const { allWells, setRefresh, refresh } = useContext(ApiContext);
 
   const addWellForm = () => {
+    const imageForm =
+      "https://media.istockphoto.com/id/516084779/vector/oil-industry-pump-jack-drawing.jpg?s=612x612&w=0&k=20&c=VyXVnv4tGUmY-4_ILrHXBRJdxxzpFriCTxv2P-XVt44=";
     return (
-      <div>
+      <div className="adding-page">
         <div className="add-form">
           <AddWellForm />
+          <button
+            className="back-button"
+            onClick={() => {
+              setAddNewWell(false);
+            }}
+          >
+            <i class="fa-solid fa-backward-step"></i> Back
+          </button>
         </div>
-        <button
-          onClick={() => {
-            setAddNewWell(false);
-          }}
-        >
-          returen to all wells
-        </button>
+        <img className="add-image" src={imageForm} alt="Adding Well" />
       </div>
     );
   };

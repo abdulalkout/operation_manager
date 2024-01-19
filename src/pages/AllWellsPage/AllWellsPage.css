@@ -6,9 +6,11 @@
   margin-left: 200px;
   margin-top: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   width: 100%;
-  /* align-content: space-between; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 50px 0px;
 }
 
 .add-new {
@@ -24,6 +26,29 @@
   cursor: pointer;
 }
 
+.back-button {
+  align-self: center;
+  width: 194px;
+  height: 30px;
+  margin-top: 10px;
+  background-color: brown;
+  border: none;
+  color: white;
+}
+
+.adding-page {
+  width: 70%;
+  display: flex;
+  gap: 150px;
+  margin-bottom: 50px;
+}
+
+.add-image {
+  width: 400px;
+  height: 400px;
+  padding-top: 15%;
+}
+
 @media only screen and (max-width: 800px) {
   .allwells-div {
     display: flex;
@@ -31,11 +56,52 @@
   }
 
   .add-new {
-    margin-left: 25%;
+    margin-left: 0px;
     background-color: white;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 50px;
     font-size: large;
+  }
+
+  .add-form {
+    align-self: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 50px 0px;
+  }
+
+  .add-new:hover {
+    color: var(--green);
+    cursor: pointer;
+  }
+
+  .back-button {
+    align-self: center;
+    width: 194px;
+    height: 30px;
+    margin-top: 10px;
+    background-color: brown;
+    border: none;
+    color: white;
+  }
+
+  .adding-page {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+    margin-bottom: 50px;
+  }
+
+  .add-image {
+    display: none;
+    width: 400px;
+    height: 400px;
+    padding-top: 15%;
   }
 }

@@ -35,7 +35,7 @@ function AddWellForm() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    setNewWell(initialWellState); // Reset form state after submission
+    setNewWell(initialWellState);
     try {
       const formData = { ...newWell };
       const well = await addWell(formData);
