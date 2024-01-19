@@ -13,6 +13,8 @@ import ProductionWells from "./pages/ProductionWells/ProductionWells.jsx";
 import WellDetailPage from "./pages/WellDetailPage/WellDetailPage.jsx";
 import RigDetailPage from "./pages/RigDetailPage/RigDetailPage.jsx";
 import ProductionGraphs from "./pages/ProductionGraphs/ProductionGraphs.jsx";
+import AboutPage from "./pages/AboutPage/AboutPage.jsx";
+import SignedIn from "./components/SignedIn/SignedIn.jsx";
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -20,7 +22,7 @@ function App() {
     <div className="App">
       {user ? (
         <>
-          <Navbar />
+          <Navbar user={user} />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -55,7 +57,11 @@ function App() {
               path="/rig/:id"
               element={<RigDetailPage user={user} setUser={setUser} />}
             />
-            <Route path="/auth" element={<>Already signed in</>} />
+            <Route
+              path="/auth"
+              element={<SignedIn user={user} setUser={setUser} />}
+            />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>
       ) : (
@@ -67,7 +73,8 @@ function App() {
               path="/auth"
               element={<AuthPage user={user} setUser={setUser} />}
             />
-            <Route path="/operations" element={<>Please signin</>} />
+            <Route path="/operations" element={<AuthPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </>
       )}

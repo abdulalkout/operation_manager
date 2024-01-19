@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
 
-function Navbar() {
+function Navbar({ user }) {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -23,10 +23,6 @@ function Navbar() {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, []);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
 
   return (
     <div className="sticky-nav">
@@ -54,7 +50,7 @@ function Navbar() {
             {isMobileMenuOpen ? (
               <i className="fas fa-sign-in-alt"></i>
             ) : (
-              <h3>SignIn</h3>
+              <h3>{user ? <>{user.name}</> : " SignIn"}</h3>
             )}
           </Link>
         </div>

@@ -10,7 +10,6 @@ function Footer() {
         <div className="footer-links">
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact Us</Link>
-          {/* Add more links as needed */}
         </div>
         <div className="footer-social">
           <a
