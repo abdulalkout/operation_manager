@@ -41,3 +41,47 @@
   width: 80%;
   border: 0.5px solid #333;
 }
+
+.bar-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-reat:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 800px) {
+  .op-navebar-div {
+    width: auto;
+    height: auto;
+    background-color: #222;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+  }
+
+  .op-navebar-div {
+    display: flex;
+    flex-direction: column;
+  }
+  .bar-links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .user-info {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+  }
+  .logout {
+    display: none;
+  }
+}

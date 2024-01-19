@@ -9,7 +9,7 @@ function Navbar({ user, setUser }) {
   }
   return (
     <div className="op-navebar-div">
-      <div>
+      <div className="user-info">
         <p>Welcome {user.name}, </p>
         <p> Logged In : {user.email}</p>
         <Link to="/" onClick={handleLogOut}>
@@ -18,18 +18,23 @@ function Navbar({ user, setUser }) {
           </button>
         </Link>
       </div>
-      <hr />
       <br />
-      <div>
-        <Link to="/allwells">All Wells</Link>
-        <hr />
-        <Link to="/production">Production</Link>
-        <hr />
-        <Link to="/development">Drilling</Link>
-        <hr />
-        <Link to="/Rigs">Rigs</Link>
-        <hr />
-        <Link to="/graphs">Production Graphs</Link>
+      <div className="bar-links">
+        <Link className="link-reat" to="/allwells">
+          Wells
+        </Link>
+        <Link className="link-reat" to="/production">
+          Production
+        </Link>
+        <Link className="link-reat" to="/development">
+          Drilling
+        </Link>
+        <Link className="link-reat" to="/Rigs">
+          Rigs
+        </Link>
+        <Link className="link-reat" to="/graphs">
+          Graphs
+        </Link>
       </div>
     </div>
   );

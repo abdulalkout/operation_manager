@@ -9,14 +9,6 @@ import AddRigForm from "../../components/AddRigForm/AddRigForm";
 function AllRigsPage({ user, setUser }) {
   const [addNewRig, setAddNewRig] = useState(false);
   const { allRigs, refresh, setRefresh } = useContext(ApiContext);
-  // useEffect(() => {
-  //   async function getRigs() {
-  //     const rigs = await RigsAPI.getAll();
-  //     setAllRigs(rigs);
-  //   }
-  //   getRigs();
-  //   console.log(allRigs);
-  // }, [refresh]);
 
   const addRigForm = () => {
     return (
