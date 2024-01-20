@@ -1,26 +1,28 @@
-import * as usersAPI from "./users-api"; 
+import * as usersAPI from "./users-api";
 
-
-export function checkToken(){
-  return usersAPI.checkToken()
-    // checkToken returns a string, but let's
-    // make it a Date object for more flexibility
-    .then(dateStr => new Date(dateStr));
+export function checkToken() {
+  return (
+    usersAPI
+      .checkToken()
+      // checkToken returns a string, but let's
+      // make it a Date object for more flexibility
+      .then((dateStr) => new Date(dateStr))
+  );
 }
 
-export async function login(credentials){
-    const token = await usersAPI.login(credentials)
-    console.log(`Token: ${token}`)
-    localStorage.setItem('token', token)
-    console.log("Check Local Storage")
-    return getUser()
-  }
+export async function login(credentials) {
+  const token = await usersAPI.login(credentials);
+  console.log(`Token: ${token}`);
+  localStorage.setItem("token", token);
+  console.log("Check Local Storage");
+  return getUser();
+}
 
-  export async function signUp(userData) {
-    const token = await usersAPI.signUp(userData);
-    localStorage.setItem("token", token);
-    return token;
-  }
+export async function signUp(userData) {
+  const token = await usersAPI.signUp(userData);
+  localStorage.setItem("token", token);
+  return token;
+}
 
 export function getToken() {
   // getItem returns null if there's no string
@@ -44,5 +46,5 @@ export function getUser() {
 }
 
 export function logOut() {
-  localStorage.removeItem('token');
-  }
+  localStorage.removeItem("token");
+}

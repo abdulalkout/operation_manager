@@ -1,20 +1,28 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import {
   Chart,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 
-Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const WellProductionPerName = ({ productionData }) => {
   if (!productionData || !productionData.productionTime) {
-    // Handle the case when productionData is undefined or productionTime is not available
     return <div>No production data available</div>;
   }
 
@@ -30,13 +38,8 @@ const WellProductionPerName = ({ productionData }) => {
         data: productionData.productionData.map(
           (activity) => activity.production
         ),
-        backgroundColor: labels.map(
-          () =>
-            `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${
-              Math.random() * 255
-            }, 0.7)`
-        ),
-        borderWidth: 1,
+        borderColor: "rgb(255, 99, 132)",
+        fill: false,
       },
     ],
   };
@@ -61,9 +64,11 @@ const WellProductionPerName = ({ productionData }) => {
         beginAtZero: true,
       },
     },
+    maintainAspectRatio: false,
+    height: 100,
   };
 
-  return <Bar data={data} options={options} />;
+  return <Line id="well-production-line" data={data} options={options} />;
 };
 
 export default WellProductionPerName;

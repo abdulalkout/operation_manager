@@ -43,6 +43,7 @@
 
 .production-graph {
   margin-top: 100px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-  padding: 50px 30px;
+  margin-right: 100px;
+  height: 300px;
+  width: 400px;
 }

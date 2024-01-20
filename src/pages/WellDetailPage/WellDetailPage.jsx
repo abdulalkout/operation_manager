@@ -8,7 +8,7 @@ import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 import { Link } from "react-router-dom";
 import WellProductionPerName from "../../components/WellProductionGraph/WellProductionPerName";
-// import * as wellService from "../../utilities/well-service";
+import * as wellService from "../../utilities/well-service";
 
 function WellDetailPage({ user, setUser }) {
   const { id } = useParams();
@@ -16,30 +16,12 @@ function WellDetailPage({ user, setUser }) {
   const [rigData, setRigData] = useState(null);
   const [newActivity, setNewActivity] = useState(false);
   const [wellProduction, setWellProduction] = useState();
-  // const [sumProduction, setSumProduction] = useState();
+  const [sumProduction, setSumProduction] = useState();
 
   const downloadAsPDF = () => {
     const element = document.querySelector(".show-div");
     html2pdf(element);
   };
-
-  // Get production data for one well
-  async function getWellProductionData(well) {
-    try {
-      const productionData = {
-        productionData: well.operationActivities.map((activity) => ({
-          production: activity.production,
-        })),
-        productionTime: well.operationActivities.map((activity) => ({
-          createdAt: activity.createdAt,
-        })),
-      };
-      console.log(productionData);
-      setWellProduction(productionData);
-    } catch (e) {
-      console.log("data was not prepared to display");
-    }
-  }
 
   useEffect(() => {
     async function fetchData() {
@@ -55,10 +37,13 @@ function WellDetailPage({ user, setUser }) {
             console.log("Rig data was not fetched", error.message);
           }
         }
-
-        await getWellProductionData(foundWell);
-        // const sum = await wellService.sumProduction(foundWell);
-        // setSumProduction(sum);
+        // brig well data using well-service functions
+        const wellproduction = await wellService.getWellProductionData(
+          foundWell
+        );
+        setWellProduction(wellproduction);
+        const sum = wellService.sumProduction(foundWell);
+        setSumProduction(sum);
       } catch (error) {
         console.error("Error fetching well details:", error);
       }
@@ -157,7 +142,7 @@ function WellDetailPage({ user, setUser }) {
           </div>
           <div className="production-graph">
             <WellProductionPerName productionData={wellProduction} />
-            {/* <p>The sum of this well production is:{sumProduction}</p> */}
+            <p>The sum of this well production is:{sumProduction}</p>
           </div>
         </div>
       ) : null}
