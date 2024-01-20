@@ -1,0 +1,30 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.signIn-form {
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin-left: 38%;
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sign-button {
+  margin-top: 20px;
+  padding: 5px;
+  width: 100px;
+  background-color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(35, 76, 3, 0.1);
+  border-radius: 10px;
+}
+
+.sign-button:hover {
+  background-color: var(--green);
+  cursor: pointer;
+}

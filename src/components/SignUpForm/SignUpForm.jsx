@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { signUp } from '../../utilities/users-service';
-
+import "./SignUpForm.css";
+import { signUp } from "../../utilities/users-service";
 
 export default class SignUpForm extends Component {
   state = {
@@ -14,22 +14,21 @@ export default class SignUpForm extends Component {
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
-      error: ''
+      error: "",
     });
   };
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-        const formData = {...this.state};
-        delete formData.error;
-        delete formData.confirm;
-        const user = await signUp(formData);
-        console.log(user)
-
+      const formData = { ...this.state };
+      delete formData.error;
+      delete formData.confirm;
+      const user = await signUp(formData);
+      console.log(user);
     } catch (error) {
-        this.setState({
-            error: "Sign Up Failed - Try Again"
-        })
+      this.setState({
+        error: "Sign Up Failed - Try Again",
+      });
     }
   };
 
@@ -37,10 +36,15 @@ export default class SignUpForm extends Component {
     const disable = this.state.password !== this.state.confirm;
 
     return (
-      <>
-        <div>SignUpForm</div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit} style={{margin:"1em"}}>
+      <div className="">
+        <div className="signIn-form">
+          <h2>SignUpForm</h2>
+          <form
+            className="form-container"
+            autoComplete="off"
+            onSubmit={this.handleSubmit}
+            style={{ margin: "1em" }}
+          >
             <label>Name</label>
             <input
               type="text"
@@ -73,14 +77,13 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <button type="submit" disabled={disable}>
+            <button type="submit" className="sign-button" disabled={disable}>
               SIGN UP
             </button>
           </form>
         </div>
         <p className="error-message">{this.state.error}</p>
-        
-      </>
+      </div>
     );
   }
 }

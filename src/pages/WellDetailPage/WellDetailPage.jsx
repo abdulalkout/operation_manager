@@ -7,18 +7,39 @@ import * as rigsAPI from "../../utilities/rigs-api";
 import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 import { Link } from "react-router-dom";
-import WellProductionGraph from "../../components/WellProductionGraph/WellProductionGraph";
+import WellProductionPerName from "../../components/WellProductionGraph/WellProductionPerName";
+// import * as wellService from "../../utilities/well-service";
 
 function WellDetailPage({ user, setUser }) {
   const { id } = useParams();
   const [wellData, setWellData] = useState({});
   const [rigData, setRigData] = useState(null);
   const [newActivity, setNewActivity] = useState(false);
+  const [wellProduction, setWellProduction] = useState();
+  // const [sumProduction, setSumProduction] = useState();
 
   const downloadAsPDF = () => {
     const element = document.querySelector(".show-div");
     html2pdf(element);
   };
+
+  // Get production data for one well
+  async function getWellProductionData(well) {
+    try {
+      const productionData = {
+        productionData: well.operationActivities.map((activity) => ({
+          production: activity.production,
+        })),
+        productionTime: well.operationActivities.map((activity) => ({
+          createdAt: activity.createdAt,
+        })),
+      };
+      console.log(productionData);
+      setWellProduction(productionData);
+    } catch (e) {
+      console.log("data was not prepared to display");
+    }
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -31,15 +52,19 @@ function WellDetailPage({ user, setUser }) {
             const foundRig = await rigsAPI.getRigById(foundWell.rig);
             setRigData(foundRig);
           } catch (error) {
-            console.log("Rig data was not fetched", error.messege);
+            console.log("Rig data was not fetched", error.message);
           }
         }
+
+        await getWellProductionData(foundWell);
+        // const sum = await wellService.sumProduction(foundWell);
+        // setSumProduction(sum);
       } catch (error) {
         console.error("Error fetching well details:", error);
       }
     }
+
     fetchData();
-    console.log(rigData);
   }, [id]);
 
   const showActivity = () => {
@@ -82,7 +107,9 @@ function WellDetailPage({ user, setUser }) {
     return (
       <>
         <OperationActivityForm wellData={wellData} onSubmit={editWell} />
-        <button onClick={() => setNewActivity(false)}>back</button>
+        <button className="" onClick={() => setNewActivity(false)}>
+          <i class="fa-solid fa-backward-step"> </i> Back
+        </button>
       </>
     );
   };
@@ -128,14 +155,9 @@ function WellDetailPage({ user, setUser }) {
               )}
             </div>
           </div>
-          <div>
-            {/* {wellData.operationActivities.length > 0 ? (
-              <>
-                <WellProductionGraph
-                  productionData={wellData.operationActivities}
-                />
-              </>
-            ) : null} */}
+          <div className="production-graph">
+            <WellProductionPerName productionData={wellProduction} />
+            {/* <p>The sum of this well production is:{sumProduction}</p> */}
           </div>
         </div>
       ) : null}

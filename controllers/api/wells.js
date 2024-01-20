@@ -9,6 +9,7 @@ module.exports = {
   editWell,
   deleteWell,
   getAllWellsProductionData,
+  getWellProductionData,
 };
 
 async function showWell(req, res) {
@@ -139,6 +140,25 @@ async function getAllWellsProductionData(req, res) {
         createdAt: activity.createdAt,
       })),
     }));
+    res.status(200).json(productionData);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+}
+
+// Get production data for one well
+async function getWellProductionData(req, res) {
+  try {
+    const wellId = req.params.id;
+    const well = await Well.findById(wellId);
+    const productionData = {
+      productionData: well.operationActivities.map((activity) => ({
+        production: activity.production,
+      })),
+      productionTime: well.operationActivities.map((activity) => ({
+        createdAt: activity.createdAt,
+      })),
+    };
     res.status(200).json(productionData);
   } catch (e) {
     res.status(400).json({ msg: e.message });

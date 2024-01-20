@@ -13,3 +13,7 @@
   color: var(--text-light);
   cursor: pointer;
 }
+
+.signup-login {
+  text-align: center;
+}
