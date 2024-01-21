@@ -1,0 +1,28 @@
+.edit-butoons,
+.show-butoons {
+  background-color: white;
+  border: solid 1px var(--orange);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: large;
+  margin: 10px;
+}
+
+.show-butoons {
+  font-size: x-small;
+  height: 25px;
+  width: 25px;
+}
+
+.edit-butoons:hover {
+  color: var(--green);
+  cursor: pointer;
+  border: solid 1px var(--green);
+}
+
+.show-butoons:hover {
+  color: var(--green);
+  cursor: pointer;
+  border: solid 1px var(--green);
+}

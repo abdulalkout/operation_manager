@@ -125,8 +125,8 @@ function WellDetailPage({ user, setUser }) {
             </div>
           );
         })}
-        <button onClick={changeEdit}>
-          <i class="fa-solid fa-pencil"></i>
+        <button className="edit-butoons" onClick={changeEdit}>
+          <i className="fa-solid fa-pencil"></i>
         </button>
       </div>
     );
@@ -146,7 +146,7 @@ function WellDetailPage({ user, setUser }) {
     return (
       <>
         <OperationActivityForm wellData={wellData} onSubmit={editWell} />
-        <button className="" onClick={() => setNewActivity(false)}>
+        <button className="edit-butoons" onClick={() => setNewActivity(false)}>
           <i className="fa-solid fa-backward-step"> </i> Back
         </button>
       </>
@@ -174,7 +174,9 @@ function WellDetailPage({ user, setUser }) {
                   <p>
                     Rig: {rigData ? rigData.name : "Rigless"}
                     <Link to={`/rig/${wellData.rig}`}>
-                      <button className="rig-button">Show Rig</button>
+                      <button className="show-butoons">
+                        <i className="fa-regular fa-eye"></i>
+                      </button>
                     </Link>
                   </p>
                 </div>
@@ -186,10 +188,13 @@ function WellDetailPage({ user, setUser }) {
                 addActivity()
               ) : (
                 <div>
-                  <button onClick={() => setNewActivity(true)}>
+                  <button
+                    className="edit-butoons"
+                    onClick={() => setNewActivity(true)}
+                  >
                     <i className="fa-regular fa-pen-to-square"></i>
                   </button>
-                  <button onClick={downloadAsPDF}>
+                  <button className="edit-butoons" onClick={downloadAsPDF}>
                     <i className="fa-solid fa-file-arrow-down"></i>
                   </button>
                 </div>

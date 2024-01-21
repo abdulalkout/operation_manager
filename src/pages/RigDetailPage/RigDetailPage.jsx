@@ -60,7 +60,7 @@ function RigDetailPage({ user, setUser }) {
                 <p>Requested by: {activity.requester}</p>
                 <p>Aproved by: {activity.approval}</p>
               </div>
-              <p>Production: {activity.production} ppg</p>
+              <p>Total Depth: {activity.production} ft</p>
             </div>
           ))
         ) : (
@@ -105,7 +105,9 @@ function RigDetailPage({ user, setUser }) {
                 <p>
                   Well: {wellData ? wellData.name : "Stand alon"}
                   <Link to={`/well/${rigData.well}`}>
-                    <button className="rig-button">Show Well</button>
+                    <button className="show-butoons">
+                      <i className="fa-regular fa-eye"></i>
+                    </button>
                   </Link>
                 </p>
               </div>
@@ -115,10 +117,13 @@ function RigDetailPage({ user, setUser }) {
             {showActivity()}
             {!newActivity && (
               <div>
-                <button onClick={() => setNewActivity(true)}>
+                <button
+                  className="edit-butoons"
+                  onClick={() => setNewActivity(true)}
+                >
                   <i class="fa-regular fa-pen-to-square"></i>
                 </button>
-                <button onClick={downloadAsPDF}>
+                <button className="edit-butoons" onClick={downloadAsPDF}>
                   <i class="fa-solid fa-file-arrow-down"></i>
                 </button>
               </div>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./OperationActivityForm.css";
+import { ApiContext } from "../../context/ApiContext";
 
 function OperationActivityForm({ wellData, onSubmit }) {
+  const { reloadPage } = useContext(ApiContext);
   const [activityData, setActivityData] = useState({
     name: "",
     status: "",
@@ -33,6 +35,7 @@ function OperationActivityForm({ wellData, onSubmit }) {
         approval: "",
         production: "",
       });
+      reloadPage();
     } catch (error) {
       console.log("Edit well failed", error.message);
     }
