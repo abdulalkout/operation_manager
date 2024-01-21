@@ -47,6 +47,10 @@ function ApiContextProvider(props) {
     fetchDevData();
   }, [refresh]);
 
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -60,6 +64,7 @@ function ApiContextProvider(props) {
         productionWells,
         developmentWells,
         setDevelopmentWells,
+        reloadPage,
       }}
     >
       {props.children}

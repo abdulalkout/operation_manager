@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./WellDetailPage.css";
+import { ApiContext } from "../../context/ApiContext";
 import html2pdf from "html2pdf.js";
 import { useParams } from "react-router-dom";
 import * as wllsAPI from "../../utilities/wells-api";
@@ -17,7 +18,8 @@ function WellDetailPage({ user, setUser }) {
   const [newActivity, setNewActivity] = useState(false);
   const [wellProduction, setWellProduction] = useState();
   const [sumProduction, setSumProduction] = useState();
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(true);
+  const { reloadPage } = useContext(ApiContext);
 
   const [activityData, setActivityData] = useState([]);
 
@@ -56,28 +58,28 @@ function WellDetailPage({ user, setUser }) {
   }, [id]);
 
   const handleChange = async (evt, i) => {
-    // Create a copy of the activityData state
     const updatedActivityData = [...activityData];
-    // console.log("dattttaaa", updatedActivityData);
-    // Update the specific element within the array
     updatedActivityData[i] = {
       ...updatedActivityData[i],
       [evt.target.name]: evt.target.value,
     };
-
     // Update the state with the new array
     setActivityData(updatedActivityData);
     // console.log(updatedActivityData);
-
-    // Extract the wellId from the wellData
     const wellId = wellData._id;
 
     try {
-      // Send the updated data to the server
       await wllsAPI.editWellActivity(wellId, updatedActivityData);
     } catch (error) {
       console.error("Error editing well activity:", error.message);
     }
+
+    reloadPage();
+    changeEdit();
+  };
+
+  const changeEdit = () => {
+    setEdit(!edit);
   };
 
   const showActivity = () => {
@@ -123,6 +125,9 @@ function WellDetailPage({ user, setUser }) {
             </div>
           );
         })}
+        <button onClick={changeEdit}>
+          <i class="fa-solid fa-pencil"></i>
+        </button>
       </div>
     );
   };
