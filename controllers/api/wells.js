@@ -119,7 +119,41 @@ async function editWell(req, res) {
   }
 }
 
-// Edit Well
+// Edit Well Activity
+// async function editWellActivity(req, res) {
+//   try {
+//     const wellId = req.params.id;
+//     const updatedActivityData = req.body;
+
+//     // Check if the well exists
+//     const existingWell = await Well.findById(wellId);
+//     if (!existingWell) {
+//       return res.status(404).json({ message: "Well not found" });
+//     }
+
+//     //  existingWell.operationActivities = updatedActivityData;
+
+//     // Update the activity data in the well
+//     existingWell.operationActivities.forEach((activity, index) => {
+//       if (updatedActivityData[index]) {
+//         // Update only if there is new data for the activity
+//         activity.status = updatedActivityData[index].status;
+//         activity.request = updatedActivityData[index].request;
+//         // Update other properties as needed
+//       }
+//     });
+
+//     // Save the well document
+//     const updatedWell = await existingWell.save();
+
+//     res.json(updatedWell);
+//   } catch (error) {
+//     console.error("Error editing well activity:", error.message);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// }
+
+// Edit Well Activity
 // Edit Well Activity
 async function editWellActivity(req, res) {
   try {
@@ -132,15 +166,27 @@ async function editWellActivity(req, res) {
       return res.status(404).json({ message: "Well not found" });
     }
 
+    console.log("backend data reseved", updatedActivityData);
+    // Ensure that the operationActivities array exists
+    existingWell.operationActivities = updatedActivityData || [];
+
     // Update the activity data in the well
-    existingWell.operationActivities = updatedActivityData;
+    // existingWell.operationActivities.forEach((activity, index) => {
+    //   if (updatedActivityData[index]) {
+    //     // Update only if there is new data for the activity
+    //     activity.status = updatedActivityData[index].status;
+    //     activity.request = updatedActivityData[index].request;
+    //     activity.operationText = updatedActivityData[index].operationText;
+    //     // Update other properties as needed
+    //   }
+    // });
 
     // Save the well document
     const updatedWell = await existingWell.save();
 
     res.json(updatedWell);
   } catch (error) {
-    console.error("Error editing well activity:", error.message);
+    console.error("Error editing well activity Backend:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

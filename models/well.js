@@ -18,7 +18,11 @@ const wellSchema = new Schema(
     operationActivities: [
       {
         name: { type: String, required: true },
-        status: { type: String, required: true },
+        status: {
+          type: String,
+          enum: ["Planned", "On-going", "Finished"],
+          required: true,
+        },
         operationText: { type: String },
         request: {
           type: String,

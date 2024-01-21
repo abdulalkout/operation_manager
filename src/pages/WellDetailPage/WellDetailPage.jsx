@@ -67,14 +67,15 @@ function WellDetailPage({ user, setUser }) {
     setActivityData(updatedActivityData);
     // console.log(updatedActivityData);
     const wellId = wellData._id;
+    // console.log("sending data", updatedActivityData);
 
     try {
       await wllsAPI.editWellActivity(wellId, updatedActivityData);
     } catch (error) {
-      console.error("Error editing well activity:", error.message);
+      console.error("Error editing well activity frontend:", error.message);
     }
 
-    reloadPage();
+    // reloadPage();
     changeEdit();
   };
 
@@ -88,32 +89,46 @@ function WellDetailPage({ user, setUser }) {
         {wellData.operationActivities.map((activity, i) => {
           return (
             <div key={i}>
-              <div className="operation-activity-header">
-                <p>{activity.name}</p>
-                <p>{activity.status}</p>
-                <div>
-                  {edit ? (
-                    <p>{activity.request}</p>
-                  ) : (
-                    <>
-                      <select
-                        id="request"
-                        name="request"
-                        value={activity.request}
-                        onChange={(evt) => handleChange(evt, i)}
-                        required
-                      >
-                        <option value="" disabled>
-                          Select Request
-                        </option>
-                        <option value="Approved">Approved</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Declined">Declined</option>
-                      </select>
-                    </>
-                  )}
+              {edit ? (
+                <div className="operation-activity-header">
+                  <p>{activity.name}</p>
+                  <p>{activity.status}</p>
+                  <p>{activity.request}</p>
                 </div>
-              </div>
+              ) : (
+                <div className="operation-activity-header">
+                  <p>{activity.name}</p>
+                  <select
+                    id="status"
+                    name="status"
+                    value={activity.status}
+                    onChange={(evt) => handleChange(evt, i)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Request
+                    </option>
+                    <option value="Planned">Planned</option>
+                    <option value="On-going">On-going</option>
+                    <option value="Finished">Finished</option>
+                  </select>
+                  <select
+                    id="request"
+                    name="request"
+                    value={activity.request}
+                    onChange={(evt) => handleChange(evt, i)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Request
+                    </option>
+                    <option value="Approved">Approved</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Declined">Declined</option>
+                  </select>
+                </div>
+              )}
+
               <div className="operation-activity-body">
                 <p>{activity.operationText}</p>
               </div>

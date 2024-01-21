@@ -57,14 +57,28 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
           <br />
 
           <label htmlFor="status">Status:</label>
-          <input
+          {/* <input
             type="text"
             id="status"
             name="status"
             value={activityData.status}
             onChange={handleChange}
             required
-          />
+          /> */}
+          <select
+            id="status"
+            name="status"
+            value={activityData.status}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>
+              Select Request
+            </option>
+            <option value="Planned">Planned</option>
+            <option value="On-going">On-going</option>
+            <option value="Finished">Finished</option>
+          </select>
         </div>
         <br />
         <div className="input-div">
@@ -89,8 +103,9 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
             type="text"
             id="requester"
             name="requester"
-            value={user.name}
-            // onChange={handleChange}
+            placeholder={user.name}
+            value={activityData.requester}
+            onChange={handleChange}
             required
           />
         </div>
