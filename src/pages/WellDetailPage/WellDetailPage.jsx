@@ -133,9 +133,11 @@ function WellDetailPage({ user, setUser }) {
               ) : (
                 <div>
                   <button onClick={() => setNewActivity(true)}>
-                    Add OP Activity
+                    <i class="fa-regular fa-pen-to-square"></i>
                   </button>
-                  <button onClick={downloadAsPDF}>Download as PDF</button>
+                  <button onClick={downloadAsPDF}>
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                  </button>
                 </div>
               )}
             </div>
