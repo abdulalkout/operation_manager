@@ -5,6 +5,8 @@ import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import WellProductionGraph from "../../components/WellProductionGraph/WellProductionGraph";
 import { ApiContext } from "../../context/ApiContext";
 import { getAllWellsProductionData } from "../../utilities/wells-api";
+import "./ProductionGraphs.css";
+import FieldGraphs from "../../components/FieldGraphs/FieldGraphs";
 
 function ProductionGraphs({ user, setUser }) {
   const { allWells, refresh } = useContext(ApiContext);
@@ -16,7 +18,6 @@ function ProductionGraphs({ user, setUser }) {
       try {
         const data = await getAllWellsProductionData();
         setProductionData(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching production data:", error);
       }
@@ -27,8 +28,13 @@ function ProductionGraphs({ user, setUser }) {
   return (
     <div className="allwells-div">
       <OpNavbar user={user} setUser={setUser} />
-      <div>
-        <WellProductionGraph productionData={productionData} />
+      <div className="graphs">
+        <div className="well-production-graph">
+          <WellProductionGraph productionData={productionData} />
+        </div>
+        <div className="well-production-pie">
+          <FieldGraphs />
+        </div>
       </div>
     </div>
   );

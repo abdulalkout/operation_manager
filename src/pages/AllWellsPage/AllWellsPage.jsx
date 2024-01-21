@@ -5,7 +5,6 @@ import OpNavbar from "../../components/OpNavbar/OpNavbar";
 import DataComponentsList from "../../components/DataComponents/DataComponentsList";
 import AddWellForm from "../../components/AddWellForm/AddWellForm";
 import { ApiContext } from "../../context/ApiContext";
-import OperationActivityForm from "../../components/OperationActivityForm/OperationActivityForm";
 
 function AllWellsPage({ user, setUser }) {
   const [addNewWell, setAddNewWell] = useState(false);

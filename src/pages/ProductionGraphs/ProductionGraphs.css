@@ -1,0 +1,36 @@
+.graphs {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.well-production-graph,
+.well-production-pie {
+  margin-left: 10%;
+  margin-top: 70px;
+  height: 400px;
+  width: 500px;
+}
+
+.well-production-pie {
+  /* margin-left: 60%; */
+}
+
+@media only screen and (max-width: 800px) {
+  .well-production-graph,
+  .well-production-pie {
+    margin-left: 20%;
+    margin-top: 70px;
+    height: auto;
+    width: auto;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .graphs {
+    display: flex;
+    flex-direction: column;
+  }
+  /* .well-production-pie {
+    margin-left: 30%;
+  } */
+}

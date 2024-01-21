@@ -1,7 +1,12 @@
 export const sumProduction = (well) => {
-  return well.operationActivities.reduce((total, activity) => {
-    return total + activity.production;
-  }, 0);
+  try {
+    return well.operationActivities.reduce((total, activity) => {
+      return total + activity.production;
+    }, 0);
+  } catch (e) {
+    console.log("summition data was not done");
+    return 0;
+  }
 };
 
 // Get production data for one well
@@ -19,5 +24,6 @@ export async function getWellProductionData(well) {
     return productionData;
   } catch (e) {
     console.log("data was not prepared to display");
+    return 0;
   }
 }

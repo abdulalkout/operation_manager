@@ -68,7 +68,7 @@ const WellProductionPerName = ({ productionData }) => {
     height: 100,
   };
 
-  return <Line id="well-production-line" data={data} options={options} />;
+  return <Line data={data} options={options} />;
 };
 
 export default WellProductionPerName;

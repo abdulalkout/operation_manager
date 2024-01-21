@@ -142,7 +142,9 @@ function WellDetailPage({ user, setUser }) {
           </div>
           <div className="production-graph">
             <WellProductionPerName productionData={wellProduction} />
-            <p>The sum of this well production is:{sumProduction}</p>
+            <p className="sum-paragraph">
+              Sum of well production: {sumProduction} ppg
+            </p>
           </div>
         </div>
       ) : null}

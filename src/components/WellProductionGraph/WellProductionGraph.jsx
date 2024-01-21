@@ -58,6 +58,8 @@ const WellProductionGraph = ({ productionData }) => {
         beginAtZero: true,
       },
     },
+    maintainAspectRatio: false,
+    // height: 500,
   };
 
   return <Bar data={data} options={options} />;
