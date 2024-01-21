@@ -12,8 +12,11 @@ router.get("/production", wellsCtrl.getProductionWells);
 router.get("/:id", wellsCtrl.showWell);
 // Post ? new well
 router.post("/addwell", wellsCtrl.addWells);
+// Post ? edit well Activity
+router.put("/activityedit/:id", wellsCtrl.editWellActivity);
 // Post ? edit well
 router.put("/editwell/:id", wellsCtrl.editWell);
+
 // GET /api/wells
 router.delete("/delete/:id", wellsCtrl.deleteWell);
 // GET /api/wells

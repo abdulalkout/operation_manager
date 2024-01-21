@@ -17,6 +17,9 @@ function WellDetailPage({ user, setUser }) {
   const [newActivity, setNewActivity] = useState(false);
   const [wellProduction, setWellProduction] = useState();
   const [sumProduction, setSumProduction] = useState();
+  const [edit, setEdit] = useState(false);
+
+  const [activityData, setActivityData] = useState([]);
 
   const downloadAsPDF = () => {
     const element = document.querySelector(".show-div");
@@ -28,7 +31,7 @@ function WellDetailPage({ user, setUser }) {
       try {
         const foundWell = await wllsAPI.getById(id);
         setWellData(foundWell);
-
+        setActivityData(foundWell.operationActivities);
         if (foundWell.rig) {
           try {
             const foundRig = await rigsAPI.getRigById(foundWell.rig);
@@ -52,6 +55,31 @@ function WellDetailPage({ user, setUser }) {
     fetchData();
   }, [id]);
 
+  const handleChange = async (evt, i) => {
+    // Create a copy of the activityData state
+    const updatedActivityData = [...activityData];
+    // console.log("dattttaaa", updatedActivityData);
+    // Update the specific element within the array
+    updatedActivityData[i] = {
+      ...updatedActivityData[i],
+      [evt.target.name]: evt.target.value,
+    };
+
+    // Update the state with the new array
+    setActivityData(updatedActivityData);
+    // console.log(updatedActivityData);
+
+    // Extract the wellId from the wellData
+    const wellId = wellData._id;
+
+    try {
+      // Send the updated data to the server
+      await wllsAPI.editWellActivity(wellId, updatedActivityData);
+    } catch (error) {
+      console.error("Error editing well activity:", error.message);
+    }
+  };
+
   const showActivity = () => {
     return (
       <div className="activity-div">
@@ -61,7 +89,28 @@ function WellDetailPage({ user, setUser }) {
               <div className="operation-activity-header">
                 <p>{activity.name}</p>
                 <p>{activity.status}</p>
-                <p>{activity.request}</p>
+                <div>
+                  {edit ? (
+                    <p>{activity.request}</p>
+                  ) : (
+                    <>
+                      <select
+                        id="request"
+                        name="request"
+                        value={activity.request}
+                        onChange={(evt) => handleChange(evt, i)}
+                        required
+                      >
+                        <option value="" disabled>
+                          Select Request
+                        </option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Declined">Declined</option>
+                      </select>
+                    </>
+                  )}
+                </div>
               </div>
               <div className="operation-activity-body">
                 <p>{activity.operationText}</p>
@@ -93,7 +142,7 @@ function WellDetailPage({ user, setUser }) {
       <>
         <OperationActivityForm wellData={wellData} onSubmit={editWell} />
         <button className="" onClick={() => setNewActivity(false)}>
-          <i class="fa-solid fa-backward-step"> </i> Back
+          <i className="fa-solid fa-backward-step"> </i> Back
         </button>
       </>
     );
@@ -133,10 +182,10 @@ function WellDetailPage({ user, setUser }) {
               ) : (
                 <div>
                   <button onClick={() => setNewActivity(true)}>
-                    <i class="fa-regular fa-pen-to-square"></i>
+                    <i className="fa-regular fa-pen-to-square"></i>
                   </button>
                   <button onClick={downloadAsPDF}>
-                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <i className="fa-solid fa-file-arrow-down"></i>
                   </button>
                 </div>
               )}

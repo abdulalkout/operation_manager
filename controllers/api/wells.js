@@ -10,6 +10,7 @@ module.exports = {
   deleteWell,
   getAllWellsProductionData,
   getWellProductionData,
+  editWellActivity,
 };
 
 async function showWell(req, res) {
@@ -114,6 +115,32 @@ async function editWell(req, res) {
     res.json(updatedWell);
   } catch (error) {
     console.error("Error editing well:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+// Edit Well
+// Edit Well Activity
+async function editWellActivity(req, res) {
+  try {
+    const wellId = req.params.id;
+    const updatedActivityData = req.body;
+
+    // Check if the well exists
+    const existingWell = await Well.findById(wellId);
+    if (!existingWell) {
+      return res.status(404).json({ message: "Well not found" });
+    }
+
+    // Update the activity data in the well
+    existingWell.operationActivities = updatedActivityData;
+
+    // Save the well document
+    const updatedWell = await existingWell.save();
+
+    res.json(updatedWell);
+  } catch (error) {
+    console.error("Error editing well activity:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
