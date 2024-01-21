@@ -7,6 +7,7 @@ export default class SignUpForm extends Component {
     name: "",
     email: "",
     password: "",
+    position: "",
     confirm: "",
     error: "",
   };
@@ -24,7 +25,8 @@ export default class SignUpForm extends Component {
       delete formData.error;
       delete formData.confirm;
       const user = await signUp(formData);
-      console.log(user);
+      // console.log(user);
+      window.location.reload();
     } catch (error) {
       this.setState({
         error: "Sign Up Failed - Try Again",
@@ -77,6 +79,21 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
+            <br />
+            <label>Position</label>
+            <select
+              id="position"
+              name="position"
+              value={this.state.position}
+              onChange={this.handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select Request
+              </option>
+              <option value="Maneger">Maneger</option>
+              <option value="Company-Man">Company Man</option>
+            </select>
             <button type="submit" className="sign-button" disabled={disable}>
               SIGN UP
             </button>

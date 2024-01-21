@@ -18,6 +18,13 @@ const userSchema = new Schema(
       minLength: 3,
       required: true,
     },
+    position: {
+      type: String,
+      trim: true,
+      enum: ["Maneger", "Company-Man"],
+      minLength: 3,
+      required: true,
+    },
   },
   {
     timestamps: true,

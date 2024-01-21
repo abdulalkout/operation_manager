@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./OperationActivityForm.css";
 import { ApiContext } from "../../context/ApiContext";
 
-function OperationActivityForm({ wellData, onSubmit }) {
+function OperationActivityForm({ wellData, onSubmit, user }) {
   const { reloadPage } = useContext(ApiContext);
   const [activityData, setActivityData] = useState({
     name: "",
@@ -45,7 +45,7 @@ function OperationActivityForm({ wellData, onSubmit }) {
     <div className="activity-form">
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div className="input-div">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Operation:</label>
           <input
             type="text"
             id="name"
@@ -89,8 +89,8 @@ function OperationActivityForm({ wellData, onSubmit }) {
             type="text"
             id="requester"
             name="requester"
-            value={activityData.requester}
-            onChange={handleChange}
+            value={user.name}
+            // onChange={handleChange}
             required
           />
         </div>
@@ -108,7 +108,7 @@ function OperationActivityForm({ wellData, onSubmit }) {
           <br />
           <label htmlFor="production">Production:</label>
           <input
-            type="text"
+            type="number"
             id="production"
             name="production"
             value={activityData.production}

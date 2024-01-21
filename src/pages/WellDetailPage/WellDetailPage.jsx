@@ -145,9 +145,13 @@ function WellDetailPage({ user, setUser }) {
   const addActivity = () => {
     return (
       <>
-        <OperationActivityForm wellData={wellData} onSubmit={editWell} />
+        <OperationActivityForm
+          user={user}
+          wellData={wellData}
+          onSubmit={editWell}
+        />
         <button className="edit-butoons" onClick={() => setNewActivity(false)}>
-          <i className="fa-solid fa-backward-step"> </i> Back
+          <i className="fa-solid fa-backward-step"> </i>
         </button>
       </>
     );
