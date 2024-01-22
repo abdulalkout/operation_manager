@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const wellsCtrl = require("../../controllers/api/wells");
+const upload = multer();
 
+// adding files
+// Change router.put("/addfiles/:id", ...) to handle a single file
+router.put("/files/:id", upload.single("file"), wellsCtrl.addFiles);
+// router.put("/files/:id", wellsCtrl.addFiles);
 // GET /api/wells/production-data
 router.get("/allproductiondata", wellsCtrl.getAllWellsProductionData);
 // GET /Development
@@ -13,7 +19,7 @@ router.get("/:id", wellsCtrl.showWell);
 // Post ? new well
 router.post("/addwell", wellsCtrl.addWells);
 // Post ? edit well Activity
-router.put("/activityedit/:id", wellsCtrl.editWellActivity);
+router.put("/activityedit/:id", wellsCtrl.ActivityEdit);
 // Post ? edit well
 router.put("/editwell/:id", wellsCtrl.editWell);
 

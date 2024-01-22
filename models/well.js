@@ -29,13 +29,14 @@ const wellSchema = new Schema(
           enum: ["Approved", "Pending", "Declined"],
           required: true,
         },
-        requester: { type: String, required: true },
+        requester: { type: String, required: false },
         approval: { type: String, required: true },
         production: Number,
         createdAt: { type: Date, default: Date.now },
         updatedAt: { type: Date, default: Date.now },
       },
     ],
+    files: { type: Buffer },
   },
   { timestamps: true }
 );

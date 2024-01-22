@@ -10,7 +10,8 @@ module.exports = {
   deleteWell,
   getAllWellsProductionData,
   getWellProductionData,
-  editWellActivity,
+  ActivityEdit,
+  addFiles,
 };
 
 async function showWell(req, res) {
@@ -120,42 +121,8 @@ async function editWell(req, res) {
 }
 
 // Edit Well Activity
-// async function editWellActivity(req, res) {
-//   try {
-//     const wellId = req.params.id;
-//     const updatedActivityData = req.body;
-
-//     // Check if the well exists
-//     const existingWell = await Well.findById(wellId);
-//     if (!existingWell) {
-//       return res.status(404).json({ message: "Well not found" });
-//     }
-
-//     //  existingWell.operationActivities = updatedActivityData;
-
-//     // Update the activity data in the well
-//     existingWell.operationActivities.forEach((activity, index) => {
-//       if (updatedActivityData[index]) {
-//         // Update only if there is new data for the activity
-//         activity.status = updatedActivityData[index].status;
-//         activity.request = updatedActivityData[index].request;
-//         // Update other properties as needed
-//       }
-//     });
-
-//     // Save the well document
-//     const updatedWell = await existingWell.save();
-
-//     res.json(updatedWell);
-//   } catch (error) {
-//     console.error("Error editing well activity:", error.message);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// }
-
 // Edit Well Activity
-// Edit Well Activity
-async function editWellActivity(req, res) {
+async function ActivityEdit(req, res) {
   try {
     const wellId = req.params.id;
     const updatedActivityData = req.body;
@@ -166,22 +133,16 @@ async function editWellActivity(req, res) {
       return res.status(404).json({ message: "Well not found" });
     }
 
-    console.log("backend data reseved", updatedActivityData);
-    // Ensure that the operationActivities array exists
     existingWell.operationActivities = updatedActivityData || [];
 
-    // Update the activity data in the well
     // existingWell.operationActivities.forEach((activity, index) => {
     //   if (updatedActivityData[index]) {
-    //     // Update only if there is new data for the activity
     //     activity.status = updatedActivityData[index].status;
     //     activity.request = updatedActivityData[index].request;
     //     activity.operationText = updatedActivityData[index].operationText;
-    //     // Update other properties as needed
     //   }
     // });
 
-    // Save the well document
     const updatedWell = await existingWell.save();
 
     res.json(updatedWell);
@@ -235,5 +196,34 @@ async function getWellProductionData(req, res) {
     res.status(200).json(productionData);
   } catch (e) {
     res.status(400).json({ msg: e.message });
+  }
+}
+
+async function addFiles(req, res) {
+  console.log("we are in the controller", req);
+  try {
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json("No file uploaded");
+    }
+
+    const wellId = req.params.id;
+    const fileBuffer = req.file.buffer; // Use req.file to access the uploaded file
+
+    const existingWell = await Well.findById(wellId);
+    if (!existingWell) {
+      return res.status(404).json({ message: "Well not found" });
+    }
+
+    // Add the file buffer to the existing well's files array
+    // existingWell.files.push(fileBuffer);
+    existingWell.files = fileBuffer;
+
+    // Save the well document
+    const updatedWell = await existingWell.save();
+
+    res.json(updatedWell);
+  } catch (error) {
+    console.error("Error adding file:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 }

@@ -35,6 +35,11 @@ export async function deleteWell(id) {
   return sendRequest(`${BASE_URL}/delete/${id}`, "DELETE");
 }
 
+export async function addFile(wellData, fileData) {
+  // console.log(fileData);
+  return sendRequest(`${BASE_URL}/files/${wellData._id}`, "PUT", fileData);
+}
+
 export async function getAllWellsProductionData() {
   return sendRequest(`${BASE_URL}/allproductiondata`);
 }

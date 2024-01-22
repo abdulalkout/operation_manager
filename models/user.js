@@ -25,6 +25,13 @@ const userSchema = new Schema(
       minLength: 3,
       required: true,
     },
+    logs: [
+      {
+        name: { type: String },
+        createdAt: { type: Date, default: Date.now },
+        activity: { type: String },
+      },
+    ],
   },
   {
     timestamps: true,

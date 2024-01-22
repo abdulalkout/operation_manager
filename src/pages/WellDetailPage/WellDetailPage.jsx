@@ -20,6 +20,7 @@ function WellDetailPage({ user, setUser }) {
   const [sumProduction, setSumProduction] = useState();
   const [edit, setEdit] = useState(true);
   const { reloadPage } = useContext(ApiContext);
+  const [fileUploaded, setFileUploaded] = useState();
 
   const [activityData, setActivityData] = useState([]);
 
@@ -57,17 +58,24 @@ function WellDetailPage({ user, setUser }) {
     fetchData();
   }, [id]);
 
+  const editWell = async (formData) => {
+    try {
+      await wllsAPI.editWell(formData);
+      const updatedWell = await wllsAPI.getById(id);
+      setWellData(updatedWell);
+    } catch (error) {
+      console.log("Edit well failed", error.message);
+    }
+  };
+
   const handleChange = async (evt, i) => {
     const updatedActivityData = [...activityData];
     updatedActivityData[i] = {
       ...updatedActivityData[i],
       [evt.target.name]: evt.target.value,
     };
-    // Update the state with the new array
     setActivityData(updatedActivityData);
-    // console.log(updatedActivityData);
     const wellId = wellData._id;
-    // console.log("sending data", updatedActivityData);
 
     try {
       await wllsAPI.editWellActivity(wellId, updatedActivityData);
@@ -75,10 +83,9 @@ function WellDetailPage({ user, setUser }) {
       console.error("Error editing well activity frontend:", error.message);
     }
 
-    // reloadPage();
+    reloadPage();
     changeEdit();
   };
-
   const changeEdit = () => {
     setEdit(!edit);
   };
@@ -122,7 +129,9 @@ function WellDetailPage({ user, setUser }) {
                     <option value="" disabled>
                       Select Request
                     </option>
-                    <option value="Approved">Approved</option>
+                    {user.position === "Maneger" ? (
+                      <option value="Approved">Approved</option>
+                    ) : null}
                     <option value="Pending">Pending</option>
                     <option value="Declined">Declined</option>
                   </select>
@@ -147,16 +156,6 @@ function WellDetailPage({ user, setUser }) {
     );
   };
 
-  const editWell = async (formData) => {
-    try {
-      await wllsAPI.editWell(formData);
-      const updatedWell = await wllsAPI.getById(id);
-      setWellData(updatedWell);
-    } catch (error) {
-      console.log("Edit well failed", error.message);
-    }
-  };
-
   const addActivity = () => {
     return (
       <>
@@ -171,6 +170,29 @@ function WellDetailPage({ user, setUser }) {
       </>
     );
   };
+
+  const handleChangefile = (e) => {
+    const fileData = new FormData();
+    fileData.append("file", e.target.files[0]);
+    setFileUploaded(fileData);
+  };
+
+  const sendFile = async () => {
+    try {
+      console.log("file", fileUploaded);
+      // Add any additional data to the form data if needed
+      fileUploaded.append("additionalData", wellData);
+
+      // Send the file to the backend
+      await wllsAPI.addFile(fileUploaded);
+    } catch (error) {
+      console.error("Error adding file:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    console.log("file", fileUploaded);
+  }, [fileUploaded]);
 
   return (
     <>
@@ -216,6 +238,8 @@ function WellDetailPage({ user, setUser }) {
                   <button className="edit-butoons" onClick={downloadAsPDF}>
                     <i className="fa-solid fa-file-arrow-down"></i>
                   </button>
+                  {/* <input type="file" onChange={handleChangefile} />
+                  <button onClick={sendFile}>upload File</button> */}
                 </div>
               )}
             </div>

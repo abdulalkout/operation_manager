@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ApiContext } from "../../context/ApiContext";
 import { Pie } from "react-chartjs-2";
-import { Chart, Title, Tooltip, Legend, ArcElement } from "chart.js/auto"; // Import from 'chart.js/auto' to avoid manual component registration
+import { Chart, Title, Tooltip, Legend, ArcElement } from "chart.js/auto";
 
 const FieldGraphs = () => {
   const { allWells, refresh } = useContext(ApiContext);

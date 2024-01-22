@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import "./OperationActivityForm.css";
 import { ApiContext } from "../../context/ApiContext";
+import { userLogs } from "../../utilities/users-api";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 function OperationActivityForm({ wellData, onSubmit, user }) {
   const { reloadPage } = useContext(ApiContext);
@@ -13,6 +15,22 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
     approval: "",
     production: "",
   });
+  const [userLog, setUserLog] = useState();
+
+  const LogsFromUser = async (name, activity) => {
+    try {
+      const log = {
+        name: name,
+        activity: activity,
+        id: user._id,
+      };
+
+      const logsReseved = await userLogs(log);
+      console.log(logsReseved);
+    } catch (error) {
+      console.error("Error updating user logs:", error.message);
+    }
+  };
 
   const handleChange = (evt) => {
     setActivityData({ ...activityData, [evt.target.name]: evt.target.value });
@@ -35,6 +53,8 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
         approval: "",
         production: "",
       });
+
+      LogsFromUser(activityData.name, activityData.operationText);
       reloadPage();
     } catch (error) {
       console.log("Edit well failed", error.message);
@@ -57,14 +77,6 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
           <br />
 
           <label htmlFor="status">Status:</label>
-          {/* <input
-            type="text"
-            id="status"
-            name="status"
-            value={activityData.status}
-            onChange={handleChange}
-            required
-          /> */}
           <select
             id="status"
             name="status"
@@ -104,7 +116,7 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
             id="requester"
             name="requester"
             placeholder={user.name}
-            value={activityData.requester}
+            value={user.name}
             onChange={handleChange}
             required
           />
