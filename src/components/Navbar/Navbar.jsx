@@ -39,7 +39,7 @@ function Navbar({ user }) {
               <h3>About</h3>
             )}
           </Link>
-          <Link to="/graphs" className="nav-links">
+          <Link to="/operations" className="nav-links">
             {isMobileMenuOpen ? (
               <i className="fas fa-cogs"></i>
             ) : (

@@ -15,12 +15,11 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
     approval: "",
     production: "",
   });
-  const [userLog, setUserLog] = useState();
 
   const LogsFromUser = async (name, activity) => {
     try {
       const log = {
-        name: name,
+        name: `${name} For Well: ${wellData.name}`,
         activity: activity,
         id: user._id,
       };
@@ -105,7 +104,9 @@ function OperationActivityForm({ wellData, onSubmit, user }) {
             <option value="" disabled>
               Select Request
             </option>
-            <option value="Approved">Approved</option>
+            {user.position === "Maneger" ? (
+              <option value="Approved">Approved</option>
+            ) : null}
             <option value="Pending">Pending</option>
             <option value="Declined">Declined</option>
           </select>

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./AddRigForm.css"; // Add your styling if needed
 import { addRig } from "../../utilities/rigs-api"; // Adjust the import to match your API
 import * as wllsAPI from "../../utilities/wells-api";
+import { userLogs } from "../../utilities/users-api";
 
-function AddRigForm({ setAddNewRig }) {
+function AddRigForm({ setAddNewRig, user }) {
   const initialRigState = {
     name: "",
     well: "",
@@ -13,6 +14,21 @@ function AddRigForm({ setAddNewRig }) {
 
   const [newRig, setNewRig] = useState(initialRigState);
   const [allWells, setAllWells] = useState([]);
+
+  const LogsFromUser = async (rig) => {
+    try {
+      const log = {
+        name: `Add Well: ${rig.name}`,
+        activity: `Created a new Rig: ${rig.name}, With type of ${rig.type}, And It is ${rig.status}`,
+        id: user._id,
+      };
+
+      const logsReseved = await userLogs(log);
+      console.log(logsReseved);
+    } catch (error) {
+      console.error("Error updating user logs:", error.message);
+    }
+  };
 
   useEffect(() => {
     async function getWells() {
@@ -36,7 +52,8 @@ function AddRigForm({ setAddNewRig }) {
     try {
       const formData = { ...newRig };
       const rig = await addRig(formData);
-      console.log(rig);
+      // console.log(rig);
+      LogsFromUser(rig);
     } catch (error) {
       console.log("Adding rig failed", error.message);
     }

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./AddWellForm.css"; // Add your styling if needed
 import { addWell } from "../../utilities/wells-api";
 import * as RigsAPI from "../../utilities/rigs-api";
+import { userLogs } from "../../utilities/users-api";
 
-function AddWellForm() {
+function AddWellForm({ user }) {
   const initialWellState = {
     name: "",
     field: "",
@@ -16,6 +17,21 @@ function AddWellForm() {
 
   const [newWell, setNewWell] = useState(initialWellState);
   const [allRigs, setAllRigs] = useState([]);
+
+  const LogsFromUser = async () => {
+    try {
+      const log = {
+        name: `Add Well: ${newWell.name}`,
+        activity: `Created a new Well: ${newWell.name} on field ${newWell.field}, It is ${newWell.status} and on ${newWell.operation}`,
+        id: user._id,
+      };
+
+      const logsReseved = await userLogs(log);
+      console.log(logsReseved);
+    } catch (error) {
+      console.error("Error updating user logs:", error.message);
+    }
+  };
 
   useEffect(() => {
     async function getRigs() {
@@ -39,7 +55,8 @@ function AddWellForm() {
     try {
       const formData = { ...newWell };
       const well = await addWell(formData);
-      console.log(well);
+      // console.log(well);
+      LogsFromUser();
     } catch (error) {
       console.log("adding well field", error.message);
     }

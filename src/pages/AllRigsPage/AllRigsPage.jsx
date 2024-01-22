@@ -17,7 +17,7 @@ function AllRigsPage({ user, setUser }) {
     return (
       <div className="adding-page">
         <div className="add-form">
-          <AddRigForm setAddNewRig={setAddNewRig} />
+          <AddRigForm setAddNewRig={setAddNewRig} user={user} />
         </div>
         <img className="add-image" src={rigImg} />
       </div>

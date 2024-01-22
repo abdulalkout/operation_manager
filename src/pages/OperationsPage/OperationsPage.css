@@ -1,3 +1,29 @@
 .operations-page-div {
   display: flex;
 }
+
+.logs-list {
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.log-card {
+  display: flex;
+  gap: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 30px 30px;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.user-data {
+  justify-content: space-around;
+  background-color: rgba(205, 204, 204, 0.457);
+}
+
+@media only screen and (max-width: 800px) {
+  .operations-page-div {
+    display: flex;
+    flex-direction: column;
+  }
+}

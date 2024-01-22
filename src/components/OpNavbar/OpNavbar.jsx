@@ -21,6 +21,9 @@ function Navbar({ user, setUser }) {
       </div>
       <br />
       <div className="bar-links">
+        <Link className="link-reat" to="/operations">
+          Logs
+        </Link>
         <Link className="link-reat" to="/allwells">
           Wells
         </Link>

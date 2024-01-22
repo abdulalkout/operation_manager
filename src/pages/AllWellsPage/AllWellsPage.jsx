@@ -16,7 +16,7 @@ function AllWellsPage({ user, setUser }) {
     return (
       <div className="adding-page">
         <div className="add-form">
-          <AddWellForm />
+          <AddWellForm user={user} />
           <button
             className="back-button"
             onClick={() => {
