@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Operation Activity Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+The Operation Activity Tracker is a MERN Stack application designed to track well operations and activities. It allows users to add, edit, and view details about different well operations. The project showcases the use of React, state management, form handling, and communication with a backend server to store and retrieve data.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [How to Access](#how-to-access)
+- [Code Structure](#code-structure)
+- [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
+- [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Access
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To use the Operation Activity Tracker, access it through your web browser. No installation is required.
 
-### `npm test`
+[Operation Activity Tracker](#)
+[Operation Activity Tracker GitHub](#) _https://github.com/abdulalkout/operation_manager.git_
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code Structure
 
-### `npm run build`
+The project is organized into the following folders:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Components:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - Contains reusable React components used throughout the application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Contexts:**
 
-### `npm run eject`
+   - Consists of context providers, such as ApiContext, used for managing global state.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Images:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Stores images used in the project, enhancing the visual experience.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Utilities:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   - Houses utility functions or modules that might be used across the application.
 
-## Learn More
+5. **Pages:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - Contains page components representing different sections of the application, including well details and operation activities.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies Used
 
-### Code Splitting
+The project utilizes the following technologies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- React
+- React Hooks
+- React Router
+- Context API for state management
+- Axios for making HTTP requests
+- Node, and Express.js for backend
+- Mongoose for data base
 
-### Analyzing the Bundle Size
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Home](./images/home.png)
+![Well](./images/well.png)
+![Home](./images/statistics.png)
 
-### Making a Progressive Web App
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+For any questions or feedback, feel free to reach out:
 
-### Advanced Configuration
+- Email: abdul.alkout@gmail.com
+- LinkedIn: https://www.linkedin.com/in/abdul-alkout/
+- GitHub: https://github.com/abdulalkout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to use and explore the Operation Activity Tracker! Thank you for choosing our platform for managing well operations and activities.
