@@ -84,7 +84,9 @@ function RigDetailPage({ user, setUser }) {
     return (
       <>
         <OperationActivityRigForm rigData={rigData} onSubmit={editRig} />
-        <button onClick={() => setNewActivity(false)}>Back</button>
+        <button className="edit-butoons" onClick={() => setNewActivity(false)}>
+          <i className="fa-solid fa-backward-step"> </i>
+        </button>
       </>
     );
   };

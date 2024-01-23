@@ -7,6 +7,7 @@ import { ApiContext } from "../../context/ApiContext";
 import { getAllWellsProductionData } from "../../utilities/wells-api";
 import "./ProductionGraphs.css";
 import FieldGraphs from "../../components/FieldGraphs/FieldGraphs";
+import html2pdf from "html2pdf.js";
 
 function ProductionGraphs({ user, setUser }) {
   const { allWells, refresh } = useContext(ApiContext);
@@ -25,18 +26,30 @@ function ProductionGraphs({ user, setUser }) {
     fetchData();
   }, [refresh]);
 
+  const downloadAsPDF = () => {
+    const element = document.querySelector(".graphs");
+    html2pdf(element);
+  };
+
   return (
-    <div className="allwells-div">
-      <OpNavbar user={user} setUser={setUser} />
-      <div className="graphs">
-        <div className="well-production-graph">
-          <WellProductionGraph productionData={productionData} />
-        </div>
-        <div className="well-production-pie">
-          <FieldGraphs />
+    <>
+      <div className="allwells-div">
+        <OpNavbar user={user} setUser={setUser} />
+        <div className="graphs">
+          <div className="well-production-graph">
+            <WellProductionGraph productionData={productionData} />
+          </div>
+          <div className="well-production-pie">
+            <div className="graph-div">
+              <FieldGraphs />
+              <button className="edit-butoons" onClick={downloadAsPDF}>
+                <i className="fa-solid fa-file-arrow-down"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
