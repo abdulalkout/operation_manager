@@ -36,7 +36,7 @@ function OperationsPage({ user, setUser }) {
               <p>Email: {user.email}</p>
               <p>Title: {user.position}</p>
             </div>
-            <p>{user.name} has no activities</p>
+            <p className="log-card">{user.name} has no activities</p>
           </>
         )}
       </div>
