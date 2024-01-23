@@ -17,7 +17,7 @@ The Operation Activity Tracker is a MERN Stack application designed to track wel
 To use the Operation Activity Tracker, access it through your web browser. No installation is required.
 
 [Operation Activity Tracker](#)
-[Operation Activity Tracker GitHub](#https://github.com/abdulalkout/operation_manager.git)
+[Operation Activity Tracker GitHub](https://github.com/abdulalkout/operation_manager.git)
 
 ## Code Structure
 
